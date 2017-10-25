@@ -3,7 +3,7 @@ import Title from './Title';
 
 class App extends Component {
   render() {
-    const list = ['a', 'b', 'c']
+    const list = ['JE SUIS PIERRE', 'b', 'c']
     return (
       <div>
         <div className="App">
