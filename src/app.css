@@ -1,0 +1,9 @@
+.App {
+  display: flex;
+  flex-direction: column;
+}
+
+.ethlogo {
+  align-self: center;
+  height: 50px;
+}
