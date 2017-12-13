@@ -26,7 +26,7 @@ class infobox extends Component {
         });
       }
       this.getData();
-      this.refresh = setInterval(() => this.getData(), 90000);
+      this.refresh = setInterval(() => this.getData(), 10000);
     }
     componentWillUnmount(){
       clearInterval(this.refresh);
