@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './app.css'
 import Title from './components/Title';
+import CoinMarketPlace from './components/CoinMarketPlace'
 import ethImg from './assets/eth.png'
+import Polo from './components/Poloniex'
 
 class App extends Component {
   render() {
@@ -13,11 +15,14 @@ class App extends Component {
           {
             list.map((string) => (<Title title={string}/>))
           }
-          <p className="App-intro">
-            To get started, edit <code>src/App.js</code> and save to reload.
-          </p>
+
+          <CoinMarketPlace> </CoinMarketPlace>
+
+
+          {/*/<Polo>list.maps(string, key)</Polo>*/}
+
+
         </div>
-        <div>Salut les gars</div>
       </div>
     );
   }
