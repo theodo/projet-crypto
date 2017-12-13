@@ -2,14 +2,36 @@ import React, { Component } from 'react';
 import './app.css'
 import Title from './components/Title';
 import ethImg from './assets/eth.png'
+import JC_infobox from './JC_infobox';
 
 class App extends Component {
+  render() {
+    return (
+      <div>
+        <Header/>
+        <Content/>
+      </div>
+    );
+  }
+}
+
+class Header extends Component {
+  render () {
+    return (
+      <div>
+        <h1> $ETH </h1>
+          <img className="ethlogo" src={ethImg} alt="ETH Logo" />
+      </div>
+    );
+  }
+}
+
+class Content extends Component {
   render() {
     const list = ['J\'aime', 'les', 'Cryptos']
     return (
       <div>
         <div className="App">
-          <img className="ethlogo" src={ethImg} alt="ETH Logo" />
           {
             list.map((string) => (<Title title={string}/>))
           }
@@ -18,7 +40,8 @@ class App extends Component {
           </p>
         </div>
         <div>Salut les gars</div>
-      </div>
+        <JC_infobox />
+</div>
     );
   }
 }
