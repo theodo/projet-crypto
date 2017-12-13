@@ -3,6 +3,7 @@ import './app.css'
 import Title from './components/Title';
 import ethImg from './assets/eth.png'
 import JC_infobox from './JC_infobox';
+import Poloniex from './components/API';
 
 class App extends Component {
   render() {
@@ -41,6 +42,7 @@ class Content extends Component {
         </div>
         <div>Salut les gars</div>
         <JC_infobox />
+        <Poloniex></Poloniex>
 </div>
     );
   }
