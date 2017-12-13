@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './app.css'
 import Title from './components/Title';
 import ethImg from './assets/eth.png'
-import JC_infobox from './JC_infobox';
+import JC_infobox from './components/JC_infobox';
 
 class App extends Component {
   render() {
