@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import moment from 'react-moment';
-{/* import './infobox.css' */}
+import './InfoBox.css'
 
 class infobox extends Component {
   constructor(props) {
@@ -15,7 +14,7 @@ class infobox extends Component {
 
       fetch(url).then(r => r.json())
         .then((bitcoinData) => {
-          const price = bitcoinData.data.amount;
+          // const price = bitcoinData.data.amount;
 
           this.setState({
             currentPrice: bitcoinData.data.amount,
@@ -36,10 +35,20 @@ class infobox extends Component {
         <div id="data-container">
           { this.state.currentPrice ?
             <div id="left" className='box'>
-              {/* methode pour afficher un signe dollar */}
-              <div className="heading">{this.state.currentPrice.toLocaleString('us-EN',{ style: 'currency', currency: 'USD' })}</div>
+              {/* methode pour afficher un signe dollar, ne semble pas fonctionner */}
+              <div className="heading">{this.state.currentPrice.toLocaleString("us-EN",{ style: "currency", currency: "USD" })}</div>
+              <div className="subtext">Updated every 10 seconds</div>
+
             </div>
           : null}
+            <div id="right" className='box'>
+              <div className="heading">2</div>
+              <div className="subtext">Shows the number 2</div>
+            </div>
+            <div id="right" className='box'>
+              <div className="heading">3</div>
+              <div className="subtext">Shows the number 3</div>
+            </div>
         </div>
       );
     }
