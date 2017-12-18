@@ -1,26 +1,47 @@
 import React, { Component } from 'react';
 import './app.css'
-import Title from './components/Title';
-import ethImg from './assets/eth.png'
-import JC_infobox from './JC_infobox';
+import bitcoinImg from './assets/bitcoin.png'
+
+import { Link, Route, Switch, Redirect } from 'react-router-dom'
+
+import InfoBox from './components/InfoBox';
+import Team from './components/Team';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <Header/>
-        <Content/>
+        <NavMenu />
+        <Header />
+        <Content />
       </div>
     );
   }
+}
+
+class NavMenu extends Component {
+  render () {
+      return (
+        <div className="App">
+          <header className="App-header">
+            <h1 className="App-title">Crypto platform v1.0</h1>
+          </header>
+          <div className="menu">
+              <ul>
+                <li> <Link to="/">Home</Link> </li>
+                <li> <Link to="/team">Show Team</Link> </li>
+              </ul>
+          </div>
+        </div>
+      );
+    }
 }
 
 class Header extends Component {
   render () {
     return (
       <div>
-        <h1> $ETH </h1>
-          <img className="ethlogo" src={ethImg} alt="ETH Logo" />
+          <img className="bitlogo" src={bitcoinImg} alt="ETH Logo" />
       </div>
     );
   }
@@ -28,20 +49,21 @@ class Header extends Component {
 
 class Content extends Component {
   render() {
-    const list = ['J\'aime', 'les', 'Cryptos']
     return (
       <div>
-        <div className="App">
-          {
-            list.map((string) => (<Title title={string}/>))
-          }
-          <p className="App-intro">
-            To get started, edit <code>src/App.js</code> and save to reload.
-          </p>
+        <div className='App-intro'>
+                  <h1>Bitcoin Price</h1>
         </div>
-        <div>Salut les gars</div>
-        <JC_infobox />
-</div>
+        <div>
+          <InfoBox />
+        </div>
+        <div className="App-intro">
+          <Switch>
+            <Route path="/team" component={Team} />
+            <Redirect to="/" />
+          </Switch>
+        </div>
+      </div>
     );
   }
 }
