@@ -6,6 +6,8 @@ import { Link, Route, Switch, Redirect } from 'react-router-dom'
 
 import InfoBox from './components/InfoBox';
 import Team from './components/Team';
+import CoinMarketPlace from './components/CoinMarketPlace'
+// import Polo from './components/Poloniex'
 
 class App extends Component {
   render() {
@@ -56,6 +58,7 @@ class Content extends Component {
         </div>
         <div>
           <InfoBox />
+          <CoinMarketPlace />
         </div>
         <div className="App-intro">
           <Switch>
