@@ -1,9 +1,56 @@
 .App {
+  text-align:center;
   display: flex;
   flex-direction: column;
 }
 
-.ethlogo {
-  align-self: center;
-  height: 30px;
+.bitlogo {
+  animation: bitlogo-spin infinite 20s linear;
+  height: 80px;
+  display: block;
+  margin: auto;
+}
+
+.App-header {
+  background-color: #222;
+  height: 70px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  text-align: center;
+}
+
+@keyframes bitlogo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.menu ul {
+  background-color: #222;
+  margin: 1;
+}
+
+.menu li {
+  font-family: sans-serif;
+  font-size: 1.2em;
+  line-height: 40px;
+  height: 40px;
+  border-bottom: 1px solid #888;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #fff;
+  display: block;
 }
