@@ -4,6 +4,7 @@
   "homepage": "https://theodo.github.io/projet-crypto",
   "private": true,
   "dependencies": {
+    "axios": "^0.17.1",
     "gh-pages": "^1.0.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",

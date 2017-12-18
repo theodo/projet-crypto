@@ -25,8 +25,8 @@ class CoinMarketPlace extends Component {
  
     render() {
  
-        if(this.state.requestFailed){
-            return  <p>Failure, abort mission...</p>
+        if (this.state.requestFailed) {
+            return  <p>Failure, abort mission...</p> 
         } else {
             return(
                 <div>
@@ -45,5 +45,5 @@ class CoinMarketPlace extends Component {
     }
 }
  
-export default CoinMarketPlace
+export default CoinMarketPlace;
  
