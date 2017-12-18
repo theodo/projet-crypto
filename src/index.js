@@ -1,10 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+import App from './App';
+import { BrowserRouter } from 'react-router-dom';
 
-ReactDOM.render(
-    <App />
-, document.getElementById('root'));
-// Ici on cherche dans le l'index "root" et le remplacer par notre fichier App.js
+ReactDOM.render((
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>
+), document.getElementById('root')
+);
+// Ici on cherche dans l'index "root" et le remplacer par notre fichier App.js
 registerServiceWorker();
