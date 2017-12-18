@@ -5,8 +5,11 @@ import bitcoinImg from './assets/bitcoin.png'
 import InfoBox from './components/InfoBox';
 import Team from './components/Team';
 import CoinMarketPlace from './components/CoinMarketPlace'
+// import Polo from './components/Poloniex'
 
 import { Link, Route, Switch, Redirect } from 'react-router-dom'
+
+
 
 class App extends Component {
   render() {
