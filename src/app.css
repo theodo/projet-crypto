@@ -6,24 +6,27 @@
 
 .bitlogo {
   animation: bitlogo-spin infinite 20s linear;
-  height: 80px;
-  display: block;
+  height: 40px;
   margin: auto;
 }
 
 .App-header {
-  background-color: #222;
+  background-color: lightblue;
   height: 70px;
-  padding: 20px;
+  padding: 30px;
+  margin-top: 10px;
   color: white;
 }
 
 .App-title {
   font-size: 1.5em;
+  align-content: space-around;
 }
 
-.App-intro {
-  text-align: center;
+.App-Currency {
+  font-family: cursive;
+  font-size: 30px;
+  margin-top: 10px;
 }
 
 @keyframes bitlogo-spin {
@@ -33,24 +36,17 @@
 
 ul {
   list-style-type: none;
-  padding: 0;
+  padding: 2;
 }
 
-.menu ul {
-  background-color: #222;
-  margin: 1;
+.Exchange {
+  font-family: cursive;
+  font-size: 20px;
+  margin-top: 60px;
+  margin-bottom: 60px;
 }
 
-.menu li {
-  font-family: sans-serif;
-  font-size: 1.2em;
-  line-height: 40px;
-  height: 40px;
-  border-bottom: 1px solid #888;
-}
-
-.menu a {
-  text-decoration: none;
-  color: #fff;
-  display: block;
+.title {
+  color:lightblue;
+  text-decoration:underline;
 }

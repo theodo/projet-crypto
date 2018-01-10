@@ -2,20 +2,15 @@ import React, { Component } from 'react';
 import './app.css'
 import bitcoinImg from './assets/bitcoin.png'
 
-import InfoBox from './components/InfoBox';
-import Team from './components/Team';
+import Coinbase from './components/Coinbase';
 import CoinMarketPlace from './components/CoinMarketPlace'
 // import Polo from './components/Poloniex'
-
-import { Link, Route, Switch, Redirect } from 'react-router-dom'
-
 
 
 class App extends Component {
   render() {
     return (
       <div>
-        <NavMenu />
         <Header />
         <Content />
       </div>
@@ -23,29 +18,15 @@ class App extends Component {
   }
 }
 
-class NavMenu extends Component {
-  render () {
-      return (
-        <div className="App">
-          <header className="App-header">
-            <h1 className="App-title">Crypto platform v1.0</h1>
-          </header>
-          <div className="menu">
-              <ul>
-                <li> <Link to="/">Home</Link> </li>
-                <li> <Link to="/team">Show Team</Link> </li>
-              </ul>
-          </div>
-        </div>
-      );
-    }
-}
-
 class Header extends Component {
   render () {
     return (
       <div>
-          <img className="bitlogo" src={bitcoinImg} alt="ETH Logo" />
+        <div className="App">
+          <header className="App-header">
+            <h1 className="App-title">Cryptocompare v1.0</h1>
+          </header>
+        </div>
       </div>
     );
   }
@@ -56,19 +37,32 @@ class Content extends Component {
     return (
       <div>
 
-        <div className='App-intro'>
-                  <h1>Bitcoin Price</h1>
-        </div>
-        <div>
-          <InfoBox />
-          <CoinMarketPlace />
-        </div>
-        <div className="App-intro">
-          <Switch>
-            <Route path="/team" component={Team} />
-            <Redirect to="/" />
-          </Switch>
-        </div>
+          <div className="App-Currency">
+            Currency : Bitcoin
+          </div>
+          <div>
+              <img className="bitlogo" src={bitcoinImg} alt="ETH Logo" />
+          </div>
+
+              <div className="Exchange">
+                <a className="title" href="www.coinbase.com">Coinbase </a> <br></br>
+                Prix actuel:
+                <Coinbase />
+                Chart:
+              </div>
+              <div className="Exchange">
+                <a className="title" href="www.coinmarketplace.com">CoinMarketPlace </a> <br></br>
+                Prix actuel:
+                <CoinMarketPlace />
+                Chart:
+              </div>
+              <div className="Exchange">
+                <a className="title" href="www.poloniex.com">Poloniex </a> <br></br>
+                Prix actuel:
+                <CoinMarketPlace />
+                Chart:
+              </div>
+
       </div>
     );
   }

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
- 
+import './Exchange.css'
+
 //const API_URL = 'https://api.coinmarketcap.com/v1/ticker/'
- 
+
 class CoinMarketPlace extends Component {
     constructor(props){
         super(props)
@@ -12,7 +13,7 @@ class CoinMarketPlace extends Component {
         }
 
     }
- 
+
     componentDidMount() {
         axios.get('https://api.coinmarketcap.com/v1/ticker/').then((response) => {
             console.log(response.data)
@@ -22,20 +23,19 @@ class CoinMarketPlace extends Component {
             console.log(err)
         })
     }
- 
+
     render() {
- 
+
         if (this.state.requestFailed) {
-            return  <p>Failure, abort mission...</p> 
+            return  <p>Failure, abort mission...</p>
         } else {
             return(
-                <div>
+                <div id="data-container">
                     {this.state.data.map(function(dynamicData, key){
                         if(dynamicData.name === "Bitcoin"){
                             return (
-                                <div key={key}>
-                                    <h1>Le prix actuel du Bitcoin sur CoinMarket Place est: </h1>
-                                    <h2>${dynamicData.price_usd}</h2>
+                                <div id="left" className='box' key={key}>
+                                    <div className="heading">${dynamicData.price_usd}</div>
                                 </div>
                             )
                         }})}
@@ -44,6 +44,5 @@ class CoinMarketPlace extends Component {
         }
     }
 }
- 
+
 export default CoinMarketPlace;
- 

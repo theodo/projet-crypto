@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './InfoBox.css'
+import './Exchange.css'
 
-class infobox extends Component {
+class Coinbase extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -36,22 +36,14 @@ class infobox extends Component {
           { this.state.currentPrice ?
             <div id="left" className='box'>
               {/* methode pour afficher un signe dollar, ne semble pas fonctionner */}
-              <div className="heading">{this.state.currentPrice.toLocaleString("us-EN",{ style: "currency", currency: "USD" })}</div>
+              <div className="heading">${this.state.currentPrice}</div>
               <div className="subtext">Updated every 10 seconds</div>
 
             </div>
           : null}
-            <div id="right" className='box'>
-              <div className="heading">2</div>
-              <div className="subtext">Shows the number 2</div>
-            </div>
-            <div id="right" className='box'>
-              <div className="heading">3</div>
-              <div className="subtext">Shows the number 3</div>
-            </div>
         </div>
       );
     }
 }
 
-export default infobox;
+export default Coinbase;
