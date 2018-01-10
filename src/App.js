@@ -4,7 +4,7 @@ import bitcoinImg from './assets/bitcoin.png'
 
 import Coinbase from './components/Coinbase';
 import CoinMarketPlace from './components/CoinMarketPlace'
-// import Polo from './components/Poloniex'
+import Poloniex from './components/Poloniex'
 
 
 class App extends Component {
@@ -59,7 +59,7 @@ class Content extends Component {
               <div className="Exchange">
                 <a className="title" href="www.poloniex.com">Poloniex </a> <br></br>
                 Prix actuel:
-                <CoinMarketPlace />
+                <Poloniex />
                 Chart:
               </div>
 

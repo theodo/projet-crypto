@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import './Exchange.css'
 
 //const API_URL = 'https://api.coinmarketcap.com/v1/ticker/'
 
@@ -30,13 +31,11 @@ class Poloniex extends Component {
             return  <p>Failure, abort mission...</p>
         } else {
             return(
-                <div>
-                                    <h1>Le prix actuel du Bitcoin sur poloniex est: </h1>
-                                    <h2>${this.state.data["USDT_BTC"]["last"]}</h2>
-                                </div>
-
-
-
+                <div id="data-container">
+                    <div id="left" className='box'>
+                      <div className="heading">${this.state.data["USDT_BTC"]["last"]}</div>
+                    </div>
+                </div>
             );
         }
     }
