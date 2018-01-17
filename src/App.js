@@ -3,6 +3,7 @@ import './app.css'
 import bitcoinImg from './assets/bitcoin.png'
 
 import Coinbase from './components/Coinbase';
+import CoinbaseChart from './components/CoinbaseChart';
 import CoinMarketPlace from './components/CoinMarketPlace'
 import Poloniex from './components/Poloniex'
 
@@ -49,6 +50,7 @@ class Content extends Component {
                 Prix actuel:
                 <Coinbase />
                 Chart:
+                <CoinbaseChart />
               </div>
               <div className="Exchange">
                 <a className="title" href="www.coinmarketplace.com">CoinMarketPlace </a> <br></br>
