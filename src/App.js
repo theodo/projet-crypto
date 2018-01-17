@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './app.css'
 import bitcoinImg from './assets/bitcoin.png'
-
+import Chartvideo from './components/PoloniexChart'
 import Coinbase from './components/Coinbase';
 import CoinbaseChart from './components/CoinbaseChart';
 import CoinMarketPlace from './components/CoinMarketPlace'
@@ -62,7 +62,9 @@ class Content extends Component {
                 <a className="title" href="www.poloniex.com">Poloniex </a> <br></br>
                 Prix actuel:
                 <Poloniex />
-                Chart:
+                Chart: 
+                <Chartvideo />
+      
               </div>
 
       </div>
