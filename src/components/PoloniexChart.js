@@ -17,7 +17,7 @@ class Chartvideo extends Component {
      axios('https://poloniex.com/public?command=returnTradeHistory&currencyPair=USDT_BTC')
       .then((response) => {
 
-        const Data = response.data;
+        const Data = response.data.reverse();
         const chartData = {
           labels: Data.map(k => k.date),
           datasets: [
