@@ -7,7 +7,6 @@ import CoinbaseChart from './components/CoinbaseChart';
 import CoinMarketPlace from './components/CoinMarketPlace'
 import Poloniex from './components/Poloniex'
 
-
 class App extends Component {
   render() {
     return (
@@ -39,34 +38,32 @@ class Content extends Component {
       <div>
 
           <div className="App-Currency">
-            Currency : Bitcoin
-          </div>
-          <div>
+            Currency : Bitcoin <br></br>
               <img className="bitlogo" src={bitcoinImg} alt="ETH Logo" />
           </div>
-
-              <div className="Exchange">
+            <div id="container">
+              <div className="Exchange" className="box1">
                 <a className="title" href="www.coinbase.com">Coinbase </a> <br></br>
                 Prix actuel:
                 <Coinbase />
                 Chart:
                 <CoinbaseChart />
               </div>
-              <div className="Exchange">
+              <div className="Exchange" className="box2">
                 <a className="title" href="www.coinmarketplace.com">CoinMarketPlace </a> <br></br>
                 Prix actuel:
                 <CoinMarketPlace />
                 Chart:
               </div>
-              <div className="Exchange">
+              <div className="Exchange" className="box3">
                 <a className="title" href="www.poloniex.com">Poloniex </a> <br></br>
                 Prix actuel:
                 <Poloniex />
-                Chart: 
+                Chart:
                 <Chartvideo />
-      
               </div>
-
+              <span className="stretch"></span>
+            </div>
       </div>
     );
   }

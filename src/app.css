@@ -12,8 +12,8 @@
 
 .App-header {
   background-color: lightblue;
-  height: 70px;
-  padding: 30px;
+  height: 50px;
+  padding: 10px;
   margin-top: 10px;
   color: white;
 }
@@ -27,6 +27,8 @@
   font-family: cursive;
   font-size: 30px;
   margin-top: 10px;
+  text-align: center;
+  color: #ff0066;
 }
 
 @keyframes bitlogo-spin {
@@ -47,6 +49,45 @@ ul {
 }
 
 .title {
-  color:lightblue;
+  color:grey;
+  font-weight: bold;
   text-decoration:underline;
+  font-size: 30px;
+}
+
+#container {
+    border: 0.5px dashed #ff0066;
+    height: 470px;
+
+    text-align: justify;
+    -ms-text-justify: distribute-all-lines;
+    text-justify: distribute-all-lines;
+}
+
+.box1, .box2, .box3 {
+    width: 439px;
+    height: 460px;
+    vertical-align: bottom;
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    margin-top:5px;
+    margin-left:5px;
+    margin-right:5px;
+    margin-bottom:5px;
+}
+
+.stretch {
+    width: 100%;
+    display: inline-block;
+    font-size: 0;
+    line-height: 0
+}
+
+.box1, .box3 {
+    background: lightblue
+}
+
+.box2 {
+    background: white
 }
