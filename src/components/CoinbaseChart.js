@@ -21,7 +21,7 @@ class CoinbaseChart extends Component {
           labels: Data.map(k => k[0]),
           datasets: [
             {
-              label: 'Price',
+              label: 'Price BTC/USD',
               data: Data.map(d => d[3]),
               backgroundColor: 'lightblue',
             }
@@ -37,9 +37,12 @@ class CoinbaseChart extends Component {
       <div className="chart">
         <Line
           data={this.state.chartData}
-          // width={10}
-          // height={20}
-          options={{}}
+          width={100}
+          height={30}
+          redraw={true}
+          options={{
+            maintainAspectRatio: false,
+          }}
         />
       </div>
     );
