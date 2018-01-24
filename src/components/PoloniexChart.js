@@ -53,9 +53,12 @@ class PoloniexChart extends Component {
       <div className="chart">
         <Line
           data={this.state.chartData}
-          // width={10}
-          // height={20}
-          options={{}}
+          width={80}
+          height={60}
+          redraw={true}
+          options={{
+            maintainAspectratio: false,
+          }}
         />
       </div>
     );
