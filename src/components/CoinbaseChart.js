@@ -2,6 +2,24 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import { Line } from 'react-chartjs-2';
 
+
+function timeConverter(UNIX_timestamp){
+    var a = new Date(UNIX_timestamp * 1000);
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var year = a.getFullYear();
+    var month = months[a.getMonth()];
+    var date = a.getDate();
+    var hour = a.getHours();
+    var min = a.getMinutes();
+    var sec = a.getSeconds();
+    var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+    return time;
+}
+
+
+
+
+
 class CoinbaseChart extends Component {
 
   constructor(props){
@@ -18,7 +36,7 @@ class CoinbaseChart extends Component {
 
         const Data = response.data.reverse();
         const chartData = {
-          labels: Data.map(transac => transac[0]),
+          labels: Data.map(transac => timeConverter(transac[0])),
           datasets: [
             {
               label: 'Price BTC/USD',
