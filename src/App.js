@@ -5,14 +5,13 @@ import bitcoinImg from './assets/bitcoin.png'
 import PoloniexChart from './components/PoloniexChart'
 import Coinbase from './components/Coinbase';
 import CoinbaseChart from './components/CoinbaseChart';
-import CoinMarketPlace from './components/CoinMarketPlace'
-import Poloniex from './components/Poloniex'
-import Joinedchart from './components/joinedChart'
-<<<<<<< HEAD
-import Header from './components/Header'
-=======
-import Poloniex10last from './components/Poloniex10last'
-import BittrexChart from './components/BittrexChart'
+import CoinMarketPlace from './components/CoinMarketPlace';
+import Poloniex from './components/Poloniex';
+import Joinedchart from './components/joinedChart';
+import Poloniex10last from './components/Poloniex10last';
+import BittrexChart from './components/BittrexChart';
+import CoinBase10last from "./components/CoinBase10last";
+import Bittrex10last from "./components/Bittrex10last";
 
 
 
@@ -29,7 +28,6 @@ function timeConverter(UNIX_timestamp){
     return time;
 }
 
->>>>>>> 3af78d97c516d2f66901aac6349874ce70e31608
 
 class App extends Component {
   render() {
@@ -42,19 +40,19 @@ class App extends Component {
   }
 }
 
-// class Header extends Component {
-//   render () {
-//     return (
-//       <div>
-//         <div className="App">
-//           <header className="App-header">
-//             <h1 className="App-title">Cryptocompare v1.0</h1>
-//           </header>
-//         </div>
-//       </div>
-//     );
-//   }
-// }
+class Header extends Component {
+  render () {
+    return (
+      <div>
+        <div className="App">
+          <header className="App-header">
+            <h1 className="App-title">Cryptocompare v1.0</h1>
+          </header>
+        </div>
+      </div>
+    );
+  }
+}
 
 class Content extends Component {
     constructor(props) {
@@ -156,10 +154,10 @@ class Content extends Component {
               </div>
                 <div className="Exchange" className="box2">
                 <a className="title" href="www.coinmarketplace.com">CoinMarketPlace </a> <br></br>
-                Current price:
-                <CoinMarketPlace />
+                Average Price on platforms:
+                 <CoinMarketPlace />
                 Bittrex Chart:
-                <BittrexChart />
+                 <BittrexChart />
               </div>
                 <div className="Exchange" className="box3">
                 <a className="title" href="www.poloniex.com">Poloniex </a> <br></br>
@@ -174,15 +172,17 @@ class Content extends Component {
                 <div className="Exchange" className="box1">
                   <a className="title" href="www.coinbase.com">Coinbase </a> <br></br>
                   Last ten transactions:
+                    <CoinBase10last/>
 
                 </div>
                 <div className="Exchange" className="box1">
-                <a className="title" href="www.coinbase.com">Bittrex </a> <br></br>
+                <a className="title" href="www.bittrex.com">Bittrex </a> <br></br>
                   Last ten transactions:
+                    <Bittrex10last/>
 
                 </div>
               <div className="Exchange" className="box1">
-                <a className="title" href="www.coinbase.com">Poloniex </a> <br></br>
+                <a className="title" href="www.poloniex.com">Poloniex </a> <br></br>
                   Last ten transactions:
                   <Poloniex10last/>
 
