@@ -4,7 +4,7 @@ import './Exchange.css'
 
 //const API_URL = 'https://api.coinmarketcap.com/v1/ticker/'
 
-class CoinMarketPlace extends Component {
+class CoinMarketPlaceETH extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -32,7 +32,7 @@ class CoinMarketPlace extends Component {
             return(
                 <div id="data-container">
                     {this.state.data.map(function(dynamicData, key){
-                        if(dynamicData.name === "Bitcoin"){
+                        if(dynamicData.name === "Ethereum"){
                             return (
                                 <div id="left" className='box' key={key}>
                                     <div className="heading">${dynamicData.price_usd}</div>
@@ -45,4 +45,4 @@ class CoinMarketPlace extends Component {
     }
 }
 
-export default CoinMarketPlace;
+export default CoinMarketPlaceETH;

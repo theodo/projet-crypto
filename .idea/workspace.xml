@@ -2,13 +2,39 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96b83a02-f5a9-44df-ae9f-947c563ccf9e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/BittrexChart.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Bitcoin/Bittrex10last.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Bitcoin/BittrexChart.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Bitcoin/CoinBase10last.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Bitcoin/CoinbaseChart.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Bitcoin/Poloniex10last.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Bitcoin/joinedChart.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Ethereum/Bittrex10lastETH.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Ethereum/BittrexChartEth.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Ethereum/CoinBase10lastETH.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Ethereum/CoinMarketPlaceEth.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Ethereum/CoinbaseChartEth.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Ethereum/CoinbaseEth.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Ethereum/Exchange.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Ethereum/Poloniex10lastEth.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Ethereum/PoloniexEth.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Ethereum/joinedChart.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Footer.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Header.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/MyBeautifulComponent.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/components/CoinMarketPlace.js" afterPath="$PROJECT_DIR$/src/components/Bitcoin/CoinMarketPlace.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/components/Coinbase.js" afterPath="$PROJECT_DIR$/src/components/Bitcoin/Coinbase.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/components/Exchange.css" afterPath="$PROJECT_DIR$/src/components/Bitcoin/Exchange.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/components/Poloniex.js" afterPath="$PROJECT_DIR$/src/components/Bitcoin/Poloniex.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/components/PoloniexChart.js" afterPath="$PROJECT_DIR$/src/components/Ethereum/PoloniexChartEth.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/index.html" afterPath="$PROJECT_DIR$/public/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App.js" afterPath="$PROJECT_DIR$/src/App.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app.css" afterPath="$PROJECT_DIR$/src/app.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Bitcoin/PoloniexChart.js" afterPath="$PROJECT_DIR$/src/components/Bitcoin/PoloniexChart.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/CoinbaseChart.js" afterPath="$PROJECT_DIR$/src/components/CoinbaseChart.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/PoloniexChart.js" afterPath="$PROJECT_DIR$/src/components/PoloniexChart.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/joinedChart.js" afterPath="$PROJECT_DIR$/src/components/joinedChart.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yarn.lock" afterPath="$PROJECT_DIR$/yarn.lock" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,18 +45,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="PoloniexChart.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/PoloniexChart.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-189">
-              <caret line="29" column="130" lean-forward="false" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="130" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="joinedChart.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/joinedChart.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -46,10 +60,13 @@
       <file leaf-file-name="App.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-694">
-              <caret line="106" column="4" lean-forward="false" selection-start-line="106" selection-start-column="4" selection-end-line="106" selection-end-column="4" />
+            <state relative-caret-position="366">
+              <caret line="452" column="0" lean-forward="false" selection-start-line="452" selection-start-column="0" selection-end-line="452" selection-end-column="0" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
+                <element signature="e#778#843#0" expanded="true" />
+                <element signature="e#1127#1187#0" expanded="true" />
+                <element signature="e#1472#1544#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -70,9 +87,21 @@
       <file leaf-file-name="app.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="113">
-              <caret line="59" column="18" lean-forward="false" selection-start-line="59" selection-start-column="18" selection-end-line="59" selection-end-column="18" />
+            <state relative-caret-position="591">
+              <caret line="82" column="0" lean-forward="true" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PoloniexChart.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Bitcoin/PoloniexChart.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-249">
+              <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -95,16 +124,6 @@
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Poloniex.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Poloniex.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -137,11 +156,12 @@
         <option value="$PROJECT_DIR$/test.js" />
         <option value="$PROJECT_DIR$/src/components/Poloniex10last.js" />
         <option value="$PROJECT_DIR$/src/components/Poloniex.js" />
-        <option value="$PROJECT_DIR$/src/app.css" />
         <option value="$PROJECT_DIR$/src/components/CoinbaseChart.js" />
         <option value="$PROJECT_DIR$/src/components/BittrexChart.js" />
         <option value="$PROJECT_DIR$/src/components/joinedChart.js" />
         <option value="$PROJECT_DIR$/src/components/PoloniexChart.js" />
+        <option value="$PROJECT_DIR$/src/app.css" />
+        <option value="$PROJECT_DIR$/src/components/Bitcoin/PoloniexChart.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
       </list>
     </option>
@@ -192,6 +212,13 @@
               <item name="projet-crypto1" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projet-crypto1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projet-crypto1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="Bitcoin" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -291,9 +318,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="585">
           <caret line="41" column="44" lean-forward="false" selection-start-line="41" selection-start-column="44" selection-end-line="41" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -329,6 +354,9 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="154" selection-end-column="19" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#778#843#0" expanded="true" />
+            <element signature="e#1127#1187#0" expanded="true" />
+            <element signature="e#1472#1544#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -337,9 +365,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="585">
           <caret line="41" column="44" lean-forward="false" selection-start-line="41" selection-start-column="44" selection-end-line="41" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -359,6 +385,9 @@
           <caret line="150" column="6" lean-forward="true" selection-start-line="150" selection-start-column="6" selection-end-line="150" selection-end-column="6" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#778#843#0" expanded="true" />
+            <element signature="e#1127#1187#0" expanded="true" />
+            <element signature="e#1472#1544#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -367,9 +396,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -389,6 +416,9 @@
           <caret line="48" column="24" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#778#843#0" expanded="true" />
+            <element signature="e#1127#1187#0" expanded="true" />
+            <element signature="e#1472#1544#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -404,14 +434,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="630">
           <caret line="44" column="66" lean-forward="false" selection-start-line="44" selection-start-column="66" selection-end-line="44" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="59" column="18" lean-forward="false" selection-start-line="59" selection-start-column="18" selection-end-line="59" selection-end-column="18" />
           <folding />
         </state>
       </provider>
@@ -456,9 +478,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-189">
           <caret line="29" column="130" lean-forward="false" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="130" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -472,12 +492,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.js">
+    <entry file="file://$PROJECT_DIR$/src/app.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-694">
-          <caret line="106" column="4" lean-forward="false" selection-start-line="106" selection-start-column="4" selection-end-line="106" selection-end-column="4" />
+        <state relative-caret-position="591">
+          <caret line="82" column="0" lean-forward="true" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Bitcoin/PoloniexChart.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-249">
+          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="452" column="0" lean-forward="false" selection-start-line="452" selection-start-column="0" selection-end-line="452" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#778#843#0" expanded="true" />
+            <element signature="e#1127#1187#0" expanded="true" />
+            <element signature="e#1472#1544#0" expanded="true" />
           </folding>
         </state>
       </provider>

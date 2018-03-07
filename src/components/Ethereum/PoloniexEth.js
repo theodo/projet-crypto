@@ -4,7 +4,7 @@ import './Exchange.css'
 
 //const API_URL = 'https://api.coinmarketcap.com/v1/ticker/'
 
-class Poloniex extends Component {
+class PoloniexETH extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -33,7 +33,7 @@ class Poloniex extends Component {
             return(
                 <div id="data-container">
                     <div id="left" className='box'>
-                      <div className="heading">${this.state.data["USDT_BTC"]["last"]}</div>
+                      <div className="heading">${this.state.data["USDT_ETH"]["last"]}</div>
                     </div>
                 </div>
             );
@@ -41,4 +41,4 @@ class Poloniex extends Component {
     }
 
 }
-export default Poloniex
+export default PoloniexETH

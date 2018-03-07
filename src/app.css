@@ -4,10 +4,12 @@
   flex-direction: column;
 }
 
-.bitlogo {
+.logo {
   animation: bitlogo-spin infinite 20s linear;
   height: 40px;
-  margin: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .App-header {
@@ -21,14 +23,6 @@
 .App-title {
   font-size: 1.5em;
   align-content: space-around;
-}
-
-.App-Currency {
-  font-family: cursive;
-  font-size: 30px;
-  margin-top: 10px;
-  text-align: center;
-  color: #B8860B;
 }
 
 @keyframes bitlogo-spin {
@@ -49,16 +43,14 @@ ul {
 }
 
 .title {
-  color:#B8860B;
+  color:#00BCD4;
   font-weight: bold;
-  text-decoration:underline;
   font-size: 30px;
 }
 
 #container {
-    border: 0.5px dashed #B8860B;
+    border: 0.5px;
     height: 470px;
-
     text-align: justify;
     -ms-text-justify: distribute-all-lines;
     text-justify: distribute-all-lines;
@@ -67,6 +59,7 @@ ul {
 .box1, .box2, .box3 {
     width: 439px;
     height: 460px;
+    height: 490px;
     vertical-align: bottom;
     display: inline-block;
     *display: inline;
@@ -84,10 +77,6 @@ ul {
     line-height: 0
 }
 
-.box1, .box3 {
-    background: lightblue
-}
-
-.box2 {
+.box1, .box2, .box3 {
     background: white
 }

@@ -8,13 +8,17 @@
     "chart.js": "^2.7.1",
     "gdax": "^0.5.1",
     "gh-pages": "^1.0.0",
+    "material-ui": "^0.20.0",
+    "moment": "^2.20.1",
     "react": "^16.0.0",
     "react-chart-line": "^1.0.15",
     "react-chartjs": "^1.2.0",
     "react-chartjs-2": "^2.7.0",
     "react-dom": "^16.0.0",
+    "react-moment": "^0.7.0",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.0.14"
+    "react-scripts": "1.0.14",
+    "semantic-ui-react": "^0.78.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -23,5 +27,8 @@
     "deploy": "gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "case-sensitive-paths-webpack-plugin": "^2.1.2"
   }
 }
