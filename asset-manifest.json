@@ -1,7 +1,8 @@
 {
-  "main.css": "static/css/main.67bdc1a9.css",
-  "main.css.map": "static/css/main.67bdc1a9.css.map",
-  "main.js": "static/js/main.a97adae7.js",
-  "main.js.map": "static/js/main.a97adae7.js.map",
-  "static/media/bitcoin.png": "static/media/bitcoin.29f070b4.png"
+  "main.css": "static/css/main.97cb1a3a.css",
+  "main.css.map": "static/css/main.97cb1a3a.css.map",
+  "main.js": "static/js/main.797ee493.js",
+  "main.js.map": "static/js/main.797ee493.js.map",
+  "static/media/bitcoin.png": "static/media/bitcoin.29f070b4.png",
+  "static/media/eth.png": "static/media/eth.7e419ca9.png"
 }
