@@ -2,6 +2,22 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import { Line } from 'react-chartjs-2';
 
+
+
+function timeConverter(UNIX_timestamp){
+    var a = new Date(UNIX_timestamp * 1000);
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var year = a.getFullYear();
+    var month = months[a.getMonth()];
+    var date = a.getDate();
+    var hour = a.getHours();
+    var min = a.getMinutes();
+    var sec = a.getSeconds();
+    var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+    return time;
+}
+
+
 class PoloniexChart extends Component {
 
   constructor(props){
@@ -11,6 +27,8 @@ class PoloniexChart extends Component {
     }
   }
 
+
+
   componentDidMount() {
 
      axios('https://poloniex.com/public?command=returnChartData&currencyPair=USDT_BTC&start=1486512000&end=1516752000&period=86400')
@@ -18,7 +36,7 @@ class PoloniexChart extends Component {
 
         const Data = response.data;
         const chartData = {
-          labels: Data.map(k => k.date),
+          labels: Data.map(k => timeConverter(k.date)),
           datasets: [
             {
               label: 'Price',
