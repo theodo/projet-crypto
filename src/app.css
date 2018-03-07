@@ -4,11 +4,12 @@
   flex-direction: column;
 }
 
-.bitlogo {
+.logo {
   animation: bitlogo-spin infinite 20s linear;
   height: 40px;
-  margin: auto;
-  align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .App-header {
@@ -42,16 +43,15 @@ ul {
 }
 
 .title {
-  color:#B8860B;
+  color:#00BCD4;
   font-weight: bold;
-  text-decoration:underline;
   font-size: 30px;
 }
 
 #container {
-    border: 0.5px dashed #B8860B;
+    border: 0.5px;
     height: 470px;
-
+    display: flex;
     text-align: justify;
     -ms-text-justify: distribute-all-lines;
     text-justify: distribute-all-lines;
@@ -78,9 +78,9 @@ ul {
 }
 
 .box1, .box3 {
-    background: lightblue
+    background: #E0F2F1
 }
 
 .box2 {
-    background: white
+    background: #B2DFDB
 }

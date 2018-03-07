@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Exchange.css'
 
-class Coinbase extends Component {
+class CoinbaseETH extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -10,7 +10,7 @@ class Coinbase extends Component {
   }
   componentDidMount(){
     this.getData = () => {
-      const url = 'https://api.coinbase.com/v2/prices/BTC-USD/spot';
+      const url = 'https://api.coinbase.com/v2/prices/ETH-USD/spot';
 
       fetch(url).then(r => r.json())
         .then((bitcoinData) => {
@@ -46,4 +46,4 @@ class Coinbase extends Component {
     }
 }
 
-export default Coinbase;
+export default CoinbaseETH;

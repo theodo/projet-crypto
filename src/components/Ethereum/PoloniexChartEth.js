@@ -18,7 +18,7 @@ function timeConverter(UNIX_timestamp){
 }
 
 
-class PoloniexChart extends Component {
+class PoloniexChartETH extends Component {
 
   constructor(props){
     super(props);
@@ -31,7 +31,7 @@ class PoloniexChart extends Component {
 
   componentDidMount() {
 
-     axios('https://poloniex.com/public?command=returnChartData&currencyPair=USDT_BTC&start=1486512000&end=1516752000&period=86400')
+     axios('https://poloniex.com/public?command=returnChartData&currencyPair=USDT_ETH&start=1486512000&end=1516752000&period=86400')
       .then((response) => {
 
         const Data = response.data;
@@ -83,4 +83,4 @@ class PoloniexChart extends Component {
   }
 }
 
-export default PoloniexChart;
+export default PoloniexChartETH;

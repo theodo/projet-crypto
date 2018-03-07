@@ -3,21 +3,9 @@ import axios from 'axios'
 import { Line } from 'react-chartjs-2';
 
 
-function timeConverter(UNIX_timestamp){
-    var a = new Date(UNIX_timestamp * 1000);
-    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    var year = a.getFullYear();
-    var month = months[a.getMonth()];
-    var date = a.getDate();
-    var hour = a.getHours();
-    var min = a.getMinutes();
-    var sec = a.getSeconds();
-    var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
-    return time;
-}
 
 
-class BittrexChart extends Component {
+class BittrexChartETH extends Component {
 
   constructor(props){
     super(props);
@@ -28,13 +16,13 @@ class BittrexChart extends Component {
 
   componentDidMount() {
 
-     axios.get('https://bittrex.com/api/v1.1/public/getmarkethistory?market=USDT-BTC')
+     axios.get('https://bittrex.com/api/v1.1/public/getmarkethistory?market=USDT-ETH')
       .then((response) => {
 
         const Data = response.data.result;
         console.log(Data)
-        const chartData = {
-          labels: Data.map(k => k.TimeStamp).reverse(),
+          const chartData = {
+          labels: Data.map(k => k.TimeStamp),
           datasets: [
             {
               label: 'Price',
@@ -81,4 +69,4 @@ class BittrexChart extends Component {
   }
 }
 
-export default BittrexChart;
+export default BittrexChartETH;

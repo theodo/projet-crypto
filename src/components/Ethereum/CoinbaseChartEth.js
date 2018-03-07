@@ -20,7 +20,7 @@ function timeConverter(UNIX_timestamp){
 
 
 
-class CoinbaseChart extends Component {
+class CoinbaseChartETH extends Component {
 
   constructor(props){
     super(props);
@@ -31,7 +31,7 @@ class CoinbaseChart extends Component {
 
   componentDidMount() {
 
-     axios('https://api.gdax.com/products/BTC-USD/candles?granularity=86400')
+     axios.get('https://api.gdax.com/products/ETH-USD/candles?granularity=86400')
       .then((response) => {
 
         const Data = response.data.reverse();
@@ -39,7 +39,7 @@ class CoinbaseChart extends Component {
           labels: Data.map(transac => timeConverter(transac[0])),
           datasets: [
             {
-              label: 'Price BTC/USD',
+              label: 'Price ETH/USD',
               fill: false,
               lineTension: 0.1,
               backgroundColor: 'rgb(255,255,224)',
@@ -83,4 +83,4 @@ class CoinbaseChart extends Component {
   }
 }
 
-export default CoinbaseChart;
+export default CoinbaseChartETH;

@@ -1,20 +1,37 @@
 import React, { Component } from 'react';
 import './app.css'
 import axios from 'axios';
-import bitcoinImg from './assets/bitcoin.png'
 
-import PoloniexChart from './components/Bitcoin/PoloniexChart'
-import BittrexChart from './components/Bitcoin/BittrexChart'
+import bitcoinImg from './assets/bitcoin.png'
+import ethImg from './assets/eth.png'
+
+import Footer from './components/Footer';
+
+import PoloniexChart from './components/Bitcoin/PoloniexChart';
+import BittrexChart from './components/Bitcoin/BittrexChart';
 import CoinbaseChart from './components/Bitcoin/CoinbaseChart';
-import Joinedchart from './components/Bitcoin/joinedChart'
+import Joinedchart from './components/Bitcoin/joinedChart';
 
 import Coinbase from './components/Bitcoin/Coinbase';
-import CoinMarketPlace from './components/Bitcoin/CoinMarketPlace'
-import Poloniex from './components/Bitcoin/Poloniex'
+import CoinMarketPlace from './components/Bitcoin/CoinMarketPlace';
+import Poloniex from './components/Bitcoin/Poloniex';
 
-import Bittrex10last from './components/Bitcoin/Bittrex10last'
-import CoinBase10last from './components/Bitcoin/Coinbase10last'
-import Poloniex10last from './components/Bitcoin/Poloniex10last'
+import Bittrex10last from './components/Bitcoin/Bittrex10last';
+// import CoinBase10last from './components/Bitcoin/Coinbase10last';
+import Poloniex10last from './components/Bitcoin/Poloniex10last';
+
+import PoloniexChartETH from './components/Ethereum/PoloniexChartETH';
+import BittrexChartETH from './components/Ethereum/BittrexChartETH';
+import CoinbaseChartETH from './components/Ethereum/CoinbaseChartETH';
+// import JoinedchartETH from './components/Ethereum/joinedChartETH';
+
+import CoinbaseETH from './components/Ethereum/CoinbaseETH';
+import CoinMarketPlaceETH from './components/Ethereum/CoinMarketPlaceETH';
+import PoloniexETH from './components/Ethereum/PoloniexETH';
+
+import Bittrex10lastETH from './components/Ethereum/Bittrex10lastETH';
+// import CoinBase10lastETH from './components/Ethereum/Coinbase10lastETH';
+import Poloniex10lastETH from './components/Ethereum/Poloniex10lastETH';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Tabs, Tab} from 'material-ui/Tabs';
@@ -53,15 +70,12 @@ class App extends Component {
                   <p>
                     <ContentBitcoin />
                   </p>
-                  <p>
-                  </p>
                 </div>
               </Tab>
               <Tab label="Ethereum" >
                 <div>
-                  <h2 style={styles.headline}>Tab Two</h2>
                   <p>
-                    This is another example tab.
+                    <ContentETH />
                   </p>
                 </div>
               </Tab>
@@ -76,6 +90,7 @@ class App extends Component {
             </Tabs>
           );
         </MuiThemeProvider>
+        <Footer />
       </div>
     );
   }
@@ -167,26 +182,26 @@ class ContentBitcoin extends Component {
            <div>
 
             <div>
-              <img className="bitlogo" src={bitcoinImg} alt="ETH Logo" />
+              <img className="logo" src={bitcoinImg} alt="ETH Logo" />
             </div>
 
             <div id="container">
               <div className="Exchange" className="box1">
-                <a className="title" href="www.coinbase.com">Coinbase </a> <br></br>
+                <a className="title">Coinbase </a> <br></br>
                 Current price:
                 <Coinbase />
                 Chart:
                 <CoinbaseChart />
               </div>
-                <div className="Exchange" className="box2">
-                <a className="title" href="www.coinmarketplace.com">CoinMarketPlace </a> <br></br>
+              <div className="Exchange" className="box2">
+                <a className="title">CoinMarketPlace </a> <br></br>
                 Average Price on platforms:
                  <CoinMarketPlace />
                 Bittrex Chart:
                  <BittrexChart />
               </div>
-                <div className="Exchange" className="box3">
-                <a className="title" href="www.poloniex.com">Poloniex </a> <br></br>
+              <div className="Exchange" className="box3">
+                <a className="title">Poloniex </a> <br></br>
                 Current price:
                 <Poloniex />
                 Chart:
@@ -194,23 +209,162 @@ class ContentBitcoin extends Component {
               </div>
             </div>
 
+            <div id="container">
+                <div className="Exchange" className="box1">
+                  Last ten transactions:
+                  {/* <CoinBase10last/> */}
+                </div>
+                <div className="Exchange" className="box2">
+                  Last ten transactions:
+                    <Bittrex10last/>
+                </div>
+                <div className="Exchange" className="box3">
+                  Last ten transactions:
+                  <Poloniex10last/>
+                </div>
+            </div>
+
+            <div id="container">
+              <div className="Exchange" className="box2">
+                Chart:
+                <Joinedchart chartData1={this.state.chartData1}/>
+              </div>
+            </div>
+
+      </div>
+          </div>
+    );
+
+  }
+}
+
+class ContentETH extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            chartData1: {
+                labels: [],
+                datasets: [],
+            },
+        };
+    }
+  componentDidMount() {
+      let chartData1=  {
+                labels: [],
+                datasets: [],
+            };
+        axios('https://poloniex.com/public?command=returnChartData&currencyPair=USDT_BTC&start=1489536000&end=1519776000&period=86400')
+      .then((response) => {
+
+        const Datapoloniex = response.data;
+        chartData1 = {
+            labels: Datapoloniex.map(k => timeConverter(k.date)),
+            datasets: [
+             {
+                  label: 'Poloniex USD/BTC',
+                  fill: false,
+                  lineTension: 0.1,
+                  backgroundColor: 'rgba(75,192,192,0.4)',
+                  borderColor: 'rgba(75,192,192,1)',
+                  borderCapStyle: 'butt',
+                  borderDash: [],
+                  borderDashOffset: 0.0,
+                  borderJoinStyle: 'miter',
+                  pointBorderColor: 'rgba(75,192,192,1)',
+                  pointBackgroundColor: '#fff',
+                  pointBorderWidth: 1,
+                  pointHoverRadius: 5,
+                  pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+                  pointHoverBorderColor: 'rgba(220,220,220,1)',
+                  pointHoverBorderWidth: 2,
+                  pointRadius: 1,
+                  pointHitRadius: 10,
+                  data: Datapoloniex.map(d => d.open),
+
+        }]
+      }
+      })
+     axios('https://api.gdax.com/products/BTC-USD/candles?granularity=86400')
+      .then((response) => {
+
+          const Datacoinbase = response.data.reverse();
+          chartData1.datasets.push(
+              {
+                  label: 'Coinbase USD/BTC',
+                  fill: false,
+                  lineTension: 0.1,
+                  backgroundColor: 'blue',
+                  borderColor: 'blue',
+                  borderCapStyle: 'butt',
+                  borderDash: [],
+                  borderDashOffset: 0.0,
+                  borderJoinStyle: 'miter',
+                  pointBorderColor: 'blue',
+                  pointBackgroundColor: '#fff',
+                  pointBorderWidth: 1,
+                  pointHoverRadius: 5,
+                  pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+                  pointHoverBorderColor: 'rgba(220,220,220,1)',
+                  pointHoverBorderWidth: 2,
+                  pointRadius: 1,
+                  pointHitRadius: 10,
+                  data: Datacoinbase.map(transac => transac[3]),
+              }
+          )
+      }).then( () =>
+        this.setState({ chartData1 })
+     )
+
+      }
+
+  render() {
+    return (
+      <div>
+
+           <div>
+
+            <div>
+              <img className="logo" src={ethImg} alt="ETH Logo" />
+            </div>
+
+            <div id="container">
+              <div className="Exchange" className="box1">
+                <a className="title">Coinbase </a> <br></br>
+                Current price:
+                <CoinbaseETH />
+                Chart:
+                <CoinbaseChartETH />
+              </div>
+                <div className="Exchange" className="box2">
+                  <a className="title">CoinMarketPlace </a> <br></br>
+                Average Price on platforms:
+                 <CoinMarketPlaceETH />
+                Bittrex Chart:
+                 <BittrexChartETH />
+              </div>
+                <div className="Exchange" className="box3">
+                  <a className="title">Poloniex </a> <br></br>
+                Current price:
+                <PoloniexETH />
+                Chart:
+               <PoloniexChartETH />
+              </div>
+            </div>
+
               <div className="Last Ten Transactions">
                 <div className="Exchange" className="box1">
-                  <a className="title" href="www.coinbase.com">Coinbase </a> <br></br>
                   Last ten transactions:
-                    <CoinBase10last/>
+                  {/* <CoinBase10last/> */}
 
                 </div>
                 <div className="Exchange" className="box1">
-                <a className="title" href="www.bittrex.com">Bittrex </a> <br></br>
                   Last ten transactions:
-                    <Bittrex10last/>
+                    <Bittrex10lastETH />
 
                 </div>
               <div className="Exchange" className="box1">
-                <a className="title" href="www.poloniex.com">Poloniex </a> <br></br>
                   Last ten transactions:
-                  <Poloniex10last/>
+                  <Poloniex10lastETH />
 
                 </div>
 

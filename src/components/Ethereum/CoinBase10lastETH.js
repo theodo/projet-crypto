@@ -6,7 +6,24 @@ import { Table, Menu, Icon, Label } from 'semantic-ui-react';
 //const API_URL = 'https://api.coinmarketcap.com/v1/ticker/'
 
 
-class Poloniex10lastETH extends Component {
+function timeConverter(UNIX_timestamp){
+    var a = new Date(UNIX_timestamp * 1000);
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var year = a.getFullYear();
+    var month = months[a.getMonth()];
+    var date = a.getDate();
+    var hour = a.getHours();
+    var min = a.getMinutes();
+    var sec = a.getSeconds();
+    var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+    return time;
+}
+
+
+
+
+
+class CoinBase10lastETH extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -16,7 +33,7 @@ class Poloniex10lastETH extends Component {
     }
 
     componentDidMount() {
-        axios.get('https://poloniex.com/public?command=returnTradeHistory&currencyPair=USDT_ETH').then((response) => {
+        axios.get('https://api.gdax.com/products/ETH-USD/candles?granularity=60').then((response) => {
             console.log(response.data.slice(0, 3))
             this.setState({ data: response.data, requestFailed: false });
         }).catch((err) => {
@@ -35,23 +52,22 @@ class Poloniex10lastETH extends Component {
             <Table>
               <Table.Header>
                 <Table.Row>
-                  <Table.HeaderCell>Time</Table.HeaderCell>
-                  <Table.HeaderCell>Price</Table.HeaderCell>
-                    <Table.HeaderCell>Order Type</Table.HeaderCell>
+                  <Table.HeaderCell negative>Time</Table.HeaderCell>
+                  <Table.HeaderCell positive>Price</Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
 
               <Table.Body>
                 {data.slice(0, 8).map(
-                  (elem, key) => { /*if (elem.type = 'sell')*/
-                    /*{*/return(
+                  (elem, key) =>
+                    {
+                        return(
                       <Table.Row key={key}>
-                        <Table.Cell>{elem.date}</Table.Cell>
-                        <Table.Cell>{elem.rate}</Table.Cell>
-                          <Table.Cell>{elem.type}</Table.Cell>
+                        <Table.Cell>{timeConverter(elem[0])}</Table.Cell>
+                        <Table.Cell active>{elem[3]}</Table.Cell>
                       </Table.Row>);
                     }
-                  /*}*/)}
+                  )}
               </Table.Body>
             </Table>
             );
@@ -59,4 +75,4 @@ class Poloniex10lastETH extends Component {
     }
 
 }
-export default Poloniex10lastETH
+export default CoinBase10lastETH
