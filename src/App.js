@@ -1,20 +1,27 @@
 import React, { Component } from 'react';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import './app.css'
 import axios from 'axios';
 import bitcoinImg from './assets/bitcoin.png'
-import PoloniexChart from './components/PoloniexChart'
-import Coinbase from './components/Coinbase';
-import CoinbaseChart from './components/CoinbaseChart';
-import CoinMarketPlace from './components/CoinMarketPlace'
-import Poloniex from './components/Poloniex'
-import Joinedchart from './components/joinedChart'
-<<<<<<< HEAD
-import Header from './components/Header'
-=======
-import Poloniex10last from './components/Poloniex10last'
-import BittrexChart from './components/BittrexChart'
+import PoloniexChart from './components/Bitcoin/PoloniexChart'
+import Coinbase from './components/Bitcoin/Coinbase';
+import CoinbaseChart from './components/Bitcoin/CoinbaseChart';
+import CoinMarketPlace from './components/Bitcoin/CoinMarketPlace'
+import Poloniex from './components/Bitcoin/Poloniex'
+import Joinedchart from './components/Bitcoin/joinedChart'
+import Poloniex10last from './components/Bitcoin/Poloniex10last'
+import BittrexChart from './components/Bitcoin/BittrexChart'
+import {Tabs, Tab} from 'material-ui/Tabs';
+import Slider from 'material-ui/Slider';
 
-
+const styles = {
+  headline: {
+    fontSize: 24,
+    paddingTop: 16,
+    marginBottom: 12,
+    fontWeight: 400,
+  },
+};
 
 function timeConverter(UNIX_timestamp){
     var a = new Date(UNIX_timestamp * 1000);
@@ -29,34 +36,46 @@ function timeConverter(UNIX_timestamp){
     return time;
 }
 
->>>>>>> 3af78d97c516d2f66901aac6349874ce70e31608
-
 class App extends Component {
   render() {
     return (
       <div>
-        <Header />
-        <Content />
+        <MuiThemeProvider>
+            <Tabs>
+              <Tab label="Bitcoin" >
+                <div>
+                  <p>
+                    <ContentBitcoin />
+                  </p>
+                  <p>
+                  </p>
+                </div>
+              </Tab>
+              <Tab label="Ethereum" >
+                <div>
+                  <h2 style={styles.headline}>Tab Two</h2>
+                  <p>
+                    This is another example tab.
+                  </p>
+                </div>
+              </Tab>
+              <Tab label="Ripple" >
+                <div>
+                  <h2 style={styles.headline}>Tab Three</h2>
+                  <p>
+                    This is another example tab.
+                  </p>
+                </div>
+              </Tab>
+            </Tabs>
+          );
+        </MuiThemeProvider>
       </div>
     );
   }
 }
 
-// class Header extends Component {
-//   render () {
-//     return (
-//       <div>
-//         <div className="App">
-//           <header className="App-header">
-//             <h1 className="App-title">Cryptocompare v1.0</h1>
-//           </header>
-//         </div>
-//       </div>
-//     );
-//   }
-// }
-
-class Content extends Component {
+class ContentBitcoin extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -141,10 +160,9 @@ class Content extends Component {
 
            <div>
 
-          <div className="App-Currency">
-            Currency : Bitcoin <br></br>
+            <div>
               <img className="bitlogo" src={bitcoinImg} alt="ETH Logo" />
-          </div>
+            </div>
 
             <div id="container">
               <div className="Exchange" className="box1">
@@ -168,7 +186,7 @@ class Content extends Component {
                 Chart:
                <PoloniexChart/>
               </div>
-              </div>
+            </div>
 
               <div className="Last Ten Transactions">
                 <div className="Exchange" className="box1">
@@ -187,7 +205,7 @@ class Content extends Component {
                   <Poloniex10last/>
 
                 </div>
-    
+
 
               </div>
 

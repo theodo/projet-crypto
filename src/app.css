@@ -8,6 +8,7 @@
   animation: bitlogo-spin infinite 20s linear;
   height: 40px;
   margin: auto;
+  align: center;
 }
 
 .App-header {
@@ -21,14 +22,6 @@
 .App-title {
   font-size: 1.5em;
   align-content: space-around;
-}
-
-.App-Currency {
-  font-family: cursive;
-  font-size: 30px;
-  margin-top: 10px;
-  text-align: center;
-  color: #B8860B;
 }
 
 @keyframes bitlogo-spin {
