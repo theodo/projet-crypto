@@ -37,6 +37,8 @@ class Poloniex10last extends Component {
                 <Table.Row>
                   <Table.HeaderCell>TimeStamp</Table.HeaderCell>
                   <Table.HeaderCell>Price</Table.HeaderCell>
+                  <Table.HeaderCell>Order Type</Table.HeaderCell>
+                    <Table.HeaderCell>Amount</Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
 
@@ -46,9 +48,10 @@ class Poloniex10last extends Component {
                     {
                         return(
                       <Table.Row key={key}>
-                        <Table.Cell>{elem.date}</Table.Cell>
-                        <Table.Cell>{elem.rate}</Table.Cell>
+                        <Table.Cell>{elem.date.substring(2,19)}</Table.Cell>
+                        <Table.Cell active>{elem.rate.substring(0,12)}</Table.Cell>
                           <Table.Cell>{elem.type}</Table.Cell>
+                          <Table.Cell active>{elem.amount.substring(0,6)}</Table.Cell>
                       </Table.Row>);
                     }
                   })}
