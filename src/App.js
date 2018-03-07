@@ -36,6 +36,7 @@ import Poloniex10lastETH from './components/Ethereum/Poloniex10lastETH';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import Slider from 'material-ui/Slider';
+import { Divider, Segment } from 'semantic-ui-react'
 
 const styles = {
   headline: {
@@ -181,55 +182,66 @@ class ContentBitcoin extends Component {
 
            <div>
 
+            <br></br>
             <div>
               <img className="logo" src={bitcoinImg} alt="ETH Logo" />
             </div>
 
+            <Segment>
             <div id="container">
               <div className="Exchange" className="box1">
-                <a className="title">Coinbase </a> <br></br>
+                <a className="title">Coinbase </a>
+                  <Divider section />
                 Current price:
                 <Coinbase />
+                  <Divider section />
                 Chart:
                 <CoinbaseChart />
               </div>
               <div className="Exchange" className="box2">
-                <a className="title">CoinMarketPlace </a> <br></br>
+                <a className="title">CoinMarketPlace </a>
+                  <Divider section />
                 Average Price on platforms:
                  <CoinMarketPlace />
+                  <Divider section />
                 Bittrex Chart:
                  <BittrexChart />
               </div>
               <div className="Exchange" className="box3">
-                <a className="title">Poloniex </a> <br></br>
+                <a className="title">Poloniex </a>
+                  <Divider section />
                 Current price:
                 <Poloniex />
+                  <Divider section />
                 Chart:
                <PoloniexChart/>
               </div>
             </div>
 
+              <br></br>
+              <br></br>
+              <br></br>              
+              <Divider section />
+
             <div id="container">
                 <div className="Exchange" className="box1">
-                  Last ten transactions:
+                  Last ten transactions: <br></br>
                   {/* <CoinBase10last/> */}
                 </div>
                 <div className="Exchange" className="box2">
-                  Last ten transactions:
+                  Last ten transactions: <br></br>
                     <Bittrex10last/>
                 </div>
                 <div className="Exchange" className="box3">
-                  Last ten transactions:
+                  Last ten transactions: <br></br>
                   <Poloniex10last/>
                 </div>
             </div>
-
-            <div id="container">
-              <div className="Exchange" className="box2">
+            </Segment>
+              <div className="Exchange">
                 Chart:
                 <Joinedchart chartData1={this.state.chartData1}/>
               </div>
-            </div>
 
       </div>
           </div>
@@ -323,53 +335,61 @@ class ContentETH extends Component {
 
            <div>
 
+            <br></br>
             <div>
               <img className="logo" src={ethImg} alt="ETH Logo" />
             </div>
 
+            <Segment>
             <div id="container">
               <div className="Exchange" className="box1">
-                <a className="title">Coinbase </a> <br></br>
+                <a className="title">Coinbase </a>
+                  <Divider section />
                 Current price:
                 <CoinbaseETH />
+                  <Divider section />
                 Chart:
                 <CoinbaseChartETH />
               </div>
-                <div className="Exchange" className="box2">
-                  <a className="title">CoinMarketPlace </a> <br></br>
+              <div className="Exchange" className="box2">
+                  <a className="title">CoinMarketPlace </a>
+                  <Divider section />
                 Average Price on platforms:
                  <CoinMarketPlaceETH />
+                  <Divider section />
                 Bittrex Chart:
                  <BittrexChartETH />
               </div>
-                <div className="Exchange" className="box3">
-                  <a className="title">Poloniex </a> <br></br>
+              <div className="Exchange" className="box3">
+                  <a className="title">Poloniex </a>
+                  <Divider section />
                 Current price:
                 <PoloniexETH />
+                  <Divider section />
                 Chart:
                <PoloniexChartETH />
               </div>
             </div>
 
-              <div className="Last Ten Transactions">
-                <div className="Exchange" className="box1">
-                  Last ten transactions:
-                  {/* <CoinBase10last/> */}
+                <br></br>
+                <br></br>
+                <Divider section />
 
-                </div>
-                <div className="Exchange" className="box1">
-                  Last ten transactions:
-                    <Bittrex10lastETH />
-
-                </div>
+            <div className="Last Ten Transactions">
               <div className="Exchange" className="box1">
-                  Last ten transactions:
-                  <Poloniex10lastETH />
-
-                </div>
-
-
+                Last ten transactions: <br></br>
+                  {/* <CoinBase10last/> */}
               </div>
+              <div className="Exchange" className="box1">
+                  Last ten transactions: <br></br>
+                    <Bittrex10lastETH />
+              </div>
+              <div className="Exchange" className="box1">
+                  Last ten transactions: <br></br>
+                  <Poloniex10lastETH />
+              </div>
+            </div>
+            </Segment>
 
               <div className="Exchange">
                 Chart:

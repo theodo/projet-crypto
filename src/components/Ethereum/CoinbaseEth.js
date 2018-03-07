@@ -37,7 +37,6 @@ class CoinbaseETH extends Component {
             <div id="left" className='box'>
               {/* methode pour afficher un signe dollar, ne semble pas fonctionner */}
               <div className="heading">${this.state.currentPrice}</div>
-              <div className="subtext">Updated every 10 seconds</div>
 
             </div>
           : null}

@@ -36,6 +36,7 @@ class CoinMarketPlace extends Component {
                             return (
                                 <div id="left" className='box' key={key}>
                                     <div className="heading">${dynamicData.price_usd}</div>
+                                    <div className="subtext">Updated every 10 seconds</div>
                                 </div>
                             )
                         }})}
