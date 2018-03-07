@@ -7,6 +7,7 @@ import CoinbaseChart from './components/CoinbaseChart';
 import CoinMarketPlace from './components/CoinMarketPlace'
 import Poloniex from './components/Poloniex'
 import Joinedchart from './components/joinedChart'
+import Header from './components/Header'
 
 class App extends Component {
   render() {
@@ -19,19 +20,19 @@ class App extends Component {
   }
 }
 
-class Header extends Component {
-  render () {
-    return (
-      <div>
-        <div className="App">
-          <header className="App-header">
-            <h1 className="App-title">Cryptocompare v1.0</h1>
-          </header>
-        </div>
-      </div>
-    );
-  }
-}
+// class Header extends Component {
+//   render () {
+//     return (
+//       <div>
+//         <div className="App">
+//           <header className="App-header">
+//             <h1 className="App-title">Cryptocompare v1.0</h1>
+//           </header>
+//         </div>
+//       </div>
+//     );
+//   }
+// }
 
 class Content extends Component {
   render() {
