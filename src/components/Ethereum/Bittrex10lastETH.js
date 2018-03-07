@@ -39,6 +39,8 @@ class Bittrex10lastETH extends Component {
                 <Table.Row>
                   <Table.HeaderCell>Time</Table.HeaderCell>
                   <Table.HeaderCell>Price</Table.HeaderCell>
+                    <Table.HeaderCell>Order Type</Table.HeaderCell>
+                     <Table.HeaderCell>Amount</Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
 
@@ -48,8 +50,10 @@ class Bittrex10lastETH extends Component {
                     {
                         return(
                       <Table.Row key={key}>
-                        <Table.Cell negative>{elem.TimeStamp}</Table.Cell>
-                        <Table.Cell positive>{elem.Price}</Table.Cell>
+                        <Table.Cell >{elem.TimeStamp.substring(0,10) +  " " +  elem.TimeStamp.substring(11,19)}</Table.Cell>
+                        <Table.Cell active>{String(elem.Price).substring(0,12)}</Table.Cell>
+                          <Table.Cell >{elem.OrderType.toLowerCase()}</Table.Cell>
+                          <Table.Cell active>{String(elem.Quantity).substring(0,6)}</Table.Cell>
                       </Table.Row>);
                     }
                   )}
