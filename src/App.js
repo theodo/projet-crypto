@@ -174,10 +174,10 @@ class ContentBitcoin extends Component {
               </div>
                 <div className="Exchange" className="box2">
                 <a className="title" href="www.coinmarketplace.com">CoinMarketPlace </a> <br></br>
-                Current price:
-                <CoinMarketPlace />
+                Average Price on platforms:
+                 <CoinMarketPlace />
                 Bittrex Chart:
-                <BittrexChart />
+                 <BittrexChart />
               </div>
                 <div className="Exchange" className="box3">
                 <a className="title" href="www.poloniex.com">Poloniex </a> <br></br>
@@ -192,15 +192,17 @@ class ContentBitcoin extends Component {
                 <div className="Exchange" className="box1">
                   <a className="title" href="www.coinbase.com">Coinbase </a> <br></br>
                   Last ten transactions:
+                    <CoinBase10last/>
 
                 </div>
                 <div className="Exchange" className="box1">
-                <a className="title" href="www.coinbase.com">Bittrex </a> <br></br>
+                <a className="title" href="www.bittrex.com">Bittrex </a> <br></br>
                   Last ten transactions:
+                    <Bittrex10last/>
 
                 </div>
               <div className="Exchange" className="box1">
-                <a className="title" href="www.coinbase.com">Poloniex </a> <br></br>
+                <a className="title" href="www.poloniex.com">Poloniex </a> <br></br>
                   Last ten transactions:
                   <Poloniex10last/>
 
