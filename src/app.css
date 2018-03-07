@@ -50,8 +50,7 @@ ul {
 
 #container {
     border: 0.5px;
-    height: 500px;
-    display: flex;
+    height: 470px;
     text-align: justify;
     -ms-text-justify: distribute-all-lines;
     text-justify: distribute-all-lines;
@@ -59,6 +58,7 @@ ul {
 
 .box1, .box2, .box3 {
     width: 439px;
+    height: 460px;
     height: 490px;
     vertical-align: bottom;
     display: inline-block;

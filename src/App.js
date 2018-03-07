@@ -265,7 +265,15 @@ class ContentETH extends Component {
                 labels: [],
                 datasets: [],
             };
-        axios('https://poloniex.com/public?command=returnChartData&currencyPair=USDT_BTC&start=1489536000&end=1519776000&period=86400')
+
+        var a=Math.trunc(Date.now()/1000)
+        var b=a-1*86400
+
+        a=a.toString();
+        b=b.toString();
+
+
+        axios('https://poloniex.com/public?command=returnChartData&currencyPair=USDT_BTC&start='+b+'&end='+a+'&period=300')
       .then((response) => {
 
         const Datapoloniex = response.data;
@@ -296,10 +304,59 @@ class ContentETH extends Component {
         }]
       }
       })
-     axios('https://api.gdax.com/products/BTC-USD/candles?granularity=86400')
+
+     axios.get('https://bittrex.com/api/v1.1/public/getmarkethistory?market=USDT-BTC')
+      .then((response) => {
+
+        const Datachart = response.data.result.map(k => k.TimeStamp).reverse();
+        //chartData1.labels.push({label:response.data.result.map(k => k.TimeStamp).reverse()})
+        chartData1.datasets.push(
+
+            {
+                  label: 'Price',
+                  fill: false,
+                  lineTension: 0.1,
+                  backgroundColor: 'red',
+                  borderColor: 'red',
+                  borderCapStyle: 'butt',
+                  borderDash: [],
+                  borderDashOffset: 0.0,
+                  borderJoinStyle: 'miter',
+                  pointBorderColor: 'red',
+                  pointBackgroundColor: '#fff',
+                  pointBorderWidth: 1,
+                  pointHoverRadius: 5,
+                  pointHoverBackgroundColor: 'red',
+                  pointHoverBorderColor: 'red',
+                  pointHoverBorderWidth: 2,
+                  pointRadius: 1,
+                  pointHitRadius: 10,
+                  data: Datachart.map(d => d.Price),
+            }
+          )
+
+      }).then( () =>
+        this.setState({ chartData1 })
+     )
+      var now = new Date();
+
+      now=now.toISOString()
+
+      var start= new Date();
+       start.setDate(start.getDate() -1);
+      start=start.toISOString()
+      console.log(start)
+      console.log(now)
+
+
+
+     axios('https://api.gdax.com/products/BTC-USD/candles?start='+start+'&end='+now+'&granularity=300')
       .then((response) => {
 
           const Datacoinbase = response.data.reverse();
+
+        //chartData1.labels.push({label:response.data.reverse()})
+
           chartData1.datasets.push(
               {
                   label: 'Coinbase USD/BTC',
@@ -405,5 +462,7 @@ class ContentETH extends Component {
 
   }
 }
+
+
 
 export default App;
