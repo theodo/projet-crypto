@@ -1,15 +1,15 @@
 
 import React, { Component } from 'react';
-import axios from 'axios'
+
 import { Line } from 'react-chartjs-2';
 
 class Joinedchart extends Component {
 
   constructor(props){
     super(props);
-    console.log(props.chartData, 'chartData')
+    console.log(props.chartData1, 'chartData')
     this.state = {
-      chartData:{},
+      chartData1:{},
     }
   }
 /*
@@ -95,9 +95,9 @@ class Joinedchart extends Component {
     return (
       <div className="chart">
         <Line
-          data={this.props.chartData}
+          data={this.props.chartData1}
           // width={10}
-          // height={20}
+           //height={20}
           options={{}}
         />
       </div>
