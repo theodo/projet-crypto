@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import './app.css'
 import axios from 'axios';
 import bitcoinImg from './assets/bitcoin.png'
+
 import PoloniexChart from './components/Bitcoin/PoloniexChart'
-import Coinbase from './components/Bitcoin/Coinbase';
+import BittrexChart from './components/Bitcoin/BittrexChart'
 import CoinbaseChart from './components/Bitcoin/CoinbaseChart';
+import Joinedchart from './components/Bitcoin/joinedChart'
+
+import Coinbase from './components/Bitcoin/Coinbase';
 import CoinMarketPlace from './components/Bitcoin/CoinMarketPlace'
 import Poloniex from './components/Bitcoin/Poloniex'
-import Joinedchart from './components/Bitcoin/joinedChart'
+
+import Bittrex10last from './components/Bitcoin/Bittrex10last'
+import CoinBase10last from './components/Bitcoin/Coinbase10last'
 import Poloniex10last from './components/Bitcoin/Poloniex10last'
-import BittrexChart from './components/Bitcoin/BittrexChart'
+
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import Slider from 'material-ui/Slider';
 

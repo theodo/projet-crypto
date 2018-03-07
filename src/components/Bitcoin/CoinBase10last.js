@@ -75,4 +75,4 @@ class CoinBase10last extends Component {
     }
 
 }
-export default CoinBase10last
+export default CoinBase10last;
