@@ -1,0 +1,27 @@
+
+#data-container {
+  width: 100%;
+  display: flex;
+  justify-content: left;
+}
+
+.box {
+  width: 250px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.heading {
+  font-size: 1.5em;
+}
+
+.subtext {
+  font-size: 0.5em;
+}
+
+#left {
+  margin-right: 48px;
+}

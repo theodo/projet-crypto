@@ -8,7 +8,7 @@ import { Table, Menu, Icon, Label } from 'semantic-ui-react';
 
 
 
-class Bittrex10lastETH extends Component {
+class Bittrex10lastLTC extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -18,7 +18,7 @@ class Bittrex10lastETH extends Component {
     }
 
     componentDidMount() {
-        axios.get('https://bittrex.com/api/v1.1/public/getmarkethistory?market=USDT-ETH').then((response) => {
+        axios.get('https://bittrex.com/api/v1.1/public/getmarkethistory?market=USDT-LTC').then((response) => {
             console.log(response.data.result.slice(0,3))
             this.setState({ data: response.data.result, requestFailed: false });
         }).catch((err) => {
@@ -64,4 +64,4 @@ class Bittrex10lastETH extends Component {
     }
 
 }
-export default Bittrex10lastETH
+export default Bittrex10lastLTC ;

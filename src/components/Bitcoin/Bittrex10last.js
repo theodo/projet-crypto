@@ -50,7 +50,7 @@ class Bittrex10last extends Component {
                     {
                         return(
                       <Table.Row key={key}>
-                        <Table.Cell >{elem.TimeStamp.substring(0,10) +  " " +  elem.TimeStamp.substring(11,19)}</Table.Cell>
+                        <Table.Cell >{elem.TimeStamp.substring(0,10) +  elem.TimeStamp.substring(11,19)}</Table.Cell>
                         <Table.Cell active>{String(elem.Price).substring(0,12)}</Table.Cell>
                           <Table.Cell >{elem.OrderType.toLowerCase()}</Table.Cell>
                           <Table.Cell active>{String(elem.Quantity).substring(0,6)}</Table.Cell>

@@ -6,9 +6,24 @@ import { Table, Menu, Icon, Label } from 'semantic-ui-react';
 //const API_URL = 'https://api.coinmarketcap.com/v1/ticker/'
 
 
+function timeConverter(UNIX_timestamp){
+    var a = new Date(UNIX_timestamp * 1000);
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var year = a.getFullYear();
+    var month = months[a.getMonth()];
+    var date = a.getDate();
+    var hour = a.getHours();
+    var min = a.getMinutes();
+    var sec = a.getSeconds();
+    var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+    return time;
+}
 
 
-class Bittrex10lastETH extends Component {
+
+
+
+class CoinBase10lastLTC extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -18,9 +33,9 @@ class Bittrex10lastETH extends Component {
     }
 
     componentDidMount() {
-        axios.get('https://bittrex.com/api/v1.1/public/getmarkethistory?market=USDT-ETH').then((response) => {
-            console.log(response.data.result.slice(0,3))
-            this.setState({ data: response.data.result, requestFailed: false });
+        axios.get('https://api.gdax.com/products/LTC-USD/candles?granularity=60').then((response) => {
+            console.log(response.data.slice(0, 3))
+            this.setState({ data: response.data, requestFailed: false });
         }).catch((err) => {
             alert("Error with the API");
             console.log(err)
@@ -37,10 +52,8 @@ class Bittrex10lastETH extends Component {
             <Table>
               <Table.Header>
                 <Table.Row>
-                  <Table.HeaderCell>Time</Table.HeaderCell>
-                  <Table.HeaderCell>Price</Table.HeaderCell>
-                    <Table.HeaderCell>Order Type</Table.HeaderCell>
-                     <Table.HeaderCell>Amount</Table.HeaderCell>
+                  <Table.HeaderCell negative>Time</Table.HeaderCell>
+                  <Table.HeaderCell positive>Price</Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
 
@@ -50,10 +63,8 @@ class Bittrex10lastETH extends Component {
                     {
                         return(
                       <Table.Row key={key}>
-                        <Table.Cell >{elem.TimeStamp.substring(0,10) +  elem.TimeStamp.substring(11,19)}</Table.Cell>
-                        <Table.Cell active>{String(elem.Price).substring(0,12)}</Table.Cell>
-                          <Table.Cell >{elem.OrderType.toLowerCase()}</Table.Cell>
-                          <Table.Cell active>{String(elem.Quantity).substring(0,6)}</Table.Cell>
+                        <Table.Cell>{timeConverter(elem[0])}</Table.Cell>
+                        <Table.Cell active>{elem[3]}</Table.Cell>
                       </Table.Row>);
                     }
                   )}
@@ -64,4 +75,4 @@ class Bittrex10lastETH extends Component {
     }
 
 }
-export default Bittrex10lastETH
+export default CoinBase10lastLTC ;

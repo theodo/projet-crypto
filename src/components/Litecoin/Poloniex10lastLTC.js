@@ -6,9 +6,7 @@ import { Table, Menu, Icon, Label } from 'semantic-ui-react';
 //const API_URL = 'https://api.coinmarketcap.com/v1/ticker/'
 
 
-
-
-class Bittrex10lastETH extends Component {
+class Poloniex10lastLTC extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -18,16 +16,16 @@ class Bittrex10lastETH extends Component {
     }
 
     componentDidMount() {
-        axios.get('https://bittrex.com/api/v1.1/public/getmarkethistory?market=USDT-ETH').then((response) => {
-            console.log(response.data.result.slice(0,3))
-            this.setState({ data: response.data.result, requestFailed: false });
+        axios.get('https://poloniex.com/public?command=returnTradeHistory&currencyPair=USDT_LTC').then((response) => {
+            console.log(response.data.slice(0, 3))
+            this.setState({ data: response.data, requestFailed: false });
         }).catch((err) => {
             alert("Error with the API");
             console.log(err)
         })
     }
 
-    render() {
+        render() {
 
         if(this.state.requestFailed){
             return (<p>Failure, abort mission...</p>);
@@ -37,26 +35,26 @@ class Bittrex10lastETH extends Component {
             <Table>
               <Table.Header>
                 <Table.Row>
-                  <Table.HeaderCell>Time</Table.HeaderCell>
+                  <Table.HeaderCell>TimeStamp</Table.HeaderCell>
                   <Table.HeaderCell>Price</Table.HeaderCell>
-                    <Table.HeaderCell>Order Type</Table.HeaderCell>
-                     <Table.HeaderCell>Amount</Table.HeaderCell>
+                  <Table.HeaderCell>Order Type</Table.HeaderCell>
+                    <Table.HeaderCell>Amount</Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
 
               <Table.Body>
                 {data.slice(0, 8).map(
-                  (elem, key) =>
+                  (elem, key) => { if (elem.type = 'sell')
                     {
                         return(
                       <Table.Row key={key}>
-                        <Table.Cell >{elem.TimeStamp.substring(0,10) +  elem.TimeStamp.substring(11,19)}</Table.Cell>
-                        <Table.Cell active>{String(elem.Price).substring(0,12)}</Table.Cell>
-                          <Table.Cell >{elem.OrderType.toLowerCase()}</Table.Cell>
-                          <Table.Cell active>{String(elem.Quantity).substring(0,6)}</Table.Cell>
+                        <Table.Cell>{elem.date.substring(2,19)}</Table.Cell>
+                        <Table.Cell active>{elem.rate.substring(0,12)}</Table.Cell>
+                          <Table.Cell>{elem.type}</Table.Cell>
+                          <Table.Cell active>{elem.amount.substring(0,6)}</Table.Cell>
                       </Table.Row>);
                     }
-                  )}
+                  })}
               </Table.Body>
             </Table>
             );
@@ -64,4 +62,4 @@ class Bittrex10lastETH extends Component {
     }
 
 }
-export default Bittrex10lastETH
+export default Poloniex10lastLTC ;
