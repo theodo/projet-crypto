@@ -13,28 +13,28 @@ import Footer from './Footer';
 import PoloniexChart from './Bitcoin/PoloniexChart';
 import BittrexChart from './Bitcoin/BittrexChart';
 import CoinbaseChart from './Bitcoin/CoinbaseChart';
-import JoinedChart from './Bitcoin/JoinedChart';
+import Joinedchart from './Bitcoin/joinedChart';
 
 import Coinbase from './Bitcoin/Coinbase';
 import CoinMarketPlace from './Bitcoin/CoinMarketPlace';
 import Poloniex from './Bitcoin/Poloniex';
 
 import Bittrex10last from './Bitcoin/Bittrex10last';
-import Coinbase10last from './Bitcoin/Coinbase10last';
+import CoinBase10last from './Bitcoin/CoinBase10last';
 import Poloniex10last from './Bitcoin/Poloniex10last';
 
-import PoloniexChartETH from './Ethereum/PoloniexChartETH';
-import BittrexChartETH from './Ethereum/BittrexChartETH';
-import CoinbaseChartETH from './Ethereum/CoinbaseChartETH';
-// import Joinedchart from './components/Ethereum/JoinedchartETH';
+import PoloniexChartETH from './Ethereum/PoloniexChartEth';
+import BittrexChartETH from './Ethereum/BittrexChartEth';
+import CoinbaseChartETH from './Ethereum/CoinbaseChartEth';
+import JoinedchartETH from './Ethereum/JoinedchartETH';
 
-import CoinbaseETH from './Ethereum/CoinbaseETH';
-import CoinMarketPlaceETH from './Ethereum/CoinMarketPlaceETH';
-import PoloniexETH from './Ethereum/PoloniexETH';
+import CoinbaseETH from './Ethereum/CoinbaseEth';
+import CoinMarketPlaceETH from './Ethereum/CoinMarketPlaceEth';
+import PoloniexETH from './Ethereum/PoloniexEth';
 
 import Bittrex10lastETH from './Ethereum/Bittrex10lastETH';
-import Coinbase10lastETH from './Ethereum/Coinbase10lastETH';
-import Poloniex10lastETH from './Ethereum/Poloniex10lastETH';
+import CoinBase10lastETH from './Ethereum/CoinBase10lastETH';
+import Poloniex10lastETH from './Ethereum/Poloniex10lastEth';
 
 import PoloniexChartLTC from './Litecoin/PoloniexChartLTC';
 import BittrexChartLTC from './Litecoin/BittrexChartLTC';
@@ -100,7 +100,7 @@ class Content extends Component {
               <Tab label="Litecoin" >
                 <div>
                   <p>
-                    <ContentLTC />
+                        Tab 3
                   </p>
                 </div>
               </Tab>
