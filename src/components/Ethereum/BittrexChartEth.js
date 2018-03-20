@@ -4,6 +4,18 @@ import { Line } from 'react-chartjs-2';
 
 
 
+function timeConverter(UNIX_timestamp){
+    var a = new Date(UNIX_timestamp * 1000);
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var year = a.getFullYear();
+    var month = months[a.getMonth()];
+    var date = a.getDate();
+    var hour = a.getHours();
+    var min = a.getMinutes();
+    var sec = a.getSeconds();
+    var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+    return time;
+}
 
 class BittrexChartETH extends Component {
 
@@ -16,13 +28,13 @@ class BittrexChartETH extends Component {
 
   componentDidMount() {
 
-     axios.get('https://bittrex.com/api/v1.1/public/getmarkethistory?market=USDT-ETH')
+     axios.get('https://api.kraken.com/0/public/OHLC?pair=ETHUSD&interval=60&since=1513338300')
       .then((response) => {
 
         const Data = response.data.result;
-        console.log(Data)
-          const chartData = {
-          labels: Data.map(k => k.TimeStamp),
+
+        const chartData = {
+          labels: Data.XETHZUSD.map(k => timeConverter(k[0])),
           datasets: [
             {
               label: 'Price',
@@ -43,7 +55,7 @@ class BittrexChartETH extends Component {
                   pointHoverBorderWidth: 2,
                   pointRadius: 1,
                   pointHitRadius: 10,
-                  data: Data.map(d => d.Price),
+                  data: Data.XETHZUSD.map(d => d[1]),
             }
           ]
         }
