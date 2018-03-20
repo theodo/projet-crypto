@@ -18,9 +18,9 @@ class Bittrex10lastETH extends Component {
     }
 
     componentDidMount() {
-        axios.get('https://bittrex.com/api/v1.1/public/getmarkethistory?market=USDT-ETH').then((response) => {
-            console.log(response.data.result.slice(0,3))
-            this.setState({ data: response.data.result, requestFailed: false });
+        axios.get('https://api.kraken.com/0/public/OHLC?pair=ETHUSD&interval=60&since=1513338300').then((response) => {
+            console.log(response.data.result.XETHZUSD.slice(0,3))
+            this.setState({ data: response.data.result.XETHZUSD, requestFailed: false });
         }).catch((err) => {
             alert("Error with the API");
             console.log(err)
@@ -50,10 +50,10 @@ class Bittrex10lastETH extends Component {
                     {
                         return(
                       <Table.Row key={key}>
-                        <Table.Cell >{elem.TimeStamp.substring(0,10) +  elem.TimeStamp.substring(11,19)}</Table.Cell>
-                        <Table.Cell active>{String(elem.Price).substring(0,12)}</Table.Cell>
-                          <Table.Cell >{elem.OrderType.toLowerCase()}</Table.Cell>
-                          <Table.Cell active>{String(elem.Quantity).substring(0,6)}</Table.Cell>
+                        <Table.Cell >{elem[0]}</Table.Cell>
+                        <Table.Cell active>{String(elem[1]).substring(0,12)}</Table.Cell>
+                          <Table.Cell >{'Non specified'}</Table.Cell>
+                          <Table.Cell active>{'Non specified'}</Table.Cell>
                       </Table.Row>);
                     }
                   )}
