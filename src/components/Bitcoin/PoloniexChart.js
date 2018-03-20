@@ -24,10 +24,50 @@ class PoloniexChart extends Component {
     }
   }
 
+  oneDayGraph() {
+        var endDate=Math.trunc(Date.now()/1000)
+        var startDate=endDate-1*86400
 
-  componentDidMount() {
+        startDate=startDate.toString();
+        endDate=endDate.toString();
+      this.callPoloniex(startDate, endDate, 300);
+  }
 
-     axios('https://poloniex.com/public?command=returnChartData&currencyPair=USDT_BTC&start=1486512000&end=1516752000&period=86400')
+   oneYearGraph() {
+        var endDate=Math.trunc(Date.now()/1000)
+        var startDate=endDate-365*86400
+
+        startDate=startDate.toString();
+        endDate=endDate.toString();
+      this.callPoloniex(startDate, endDate, 86400);
+  }
+   onemonthsGraph() {
+        var endDate=Math.trunc(Date.now()/1000)
+        var startDate=endDate-30*86400
+
+        startDate=startDate.toString();
+        endDate=endDate.toString();
+      this.callPoloniex(startDate, endDate, 14400);
+  }
+    threemonthsGraph() {
+        var endDate=Math.trunc(Date.now()/1000)
+        var startDate=endDate-90*86400
+
+        startDate=startDate.toString();
+        endDate=endDate.toString();
+      this.callPoloniex(startDate, endDate, 14400);
+  }
+  sevenDayGraph() {
+        var endDate=Math.trunc(Date.now()/1000)
+        var startDate=endDate-7*86400
+
+        startDate=startDate.toString();
+        endDate=endDate.toString();
+      this.callPoloniex(startDate, endDate, 900);
+  }
+
+  callPoloniex(startDate, endDate, period) {
+      axios(`https://poloniex.com/public?command=returnChartData&currencyPair=USDT_BTC&start=${startDate}&end=${endDate}&period=${period}`)
       .then((response) => {
 
         const Data = response.data;
@@ -62,9 +102,24 @@ class PoloniexChart extends Component {
       });
   }
 
+  componentDidMount() {
+      var endDate=Math.trunc(Date.now()/1000)
+      var startDate=endDate-86400*365
+
+      startDate=startDate.toString();
+      endDate=endDate.toString();
+      this.callPoloniex(startDate, endDate, 86400);
+  }
+
   render() {
     return (
       <div className="chart">
+          <button onClick={() => this.oneDayGraph()}>1D</button>
+          <button onClick={() => this.sevenDayGraph()}>7D</button>
+
+          <button onClick={() => this.onemonthsGraph()}>1M</button>
+          <button onClick={() => this.threemonthsGraph()}>3M</button>
+          <button onClick={() => this.oneYearGraph()}>1Y</button>
         <Line
           data={this.state.chartData}
           width={80}

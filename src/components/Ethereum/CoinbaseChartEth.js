@@ -28,12 +28,59 @@ class CoinbaseChartETH extends Component {
       chartData:{},
     }
   }
+ oneDayGraph() {
+        var now = new Date();
 
-  componentDidMount() {
+        now=now.toISOString()
 
-     axios.get('https://api.gdax.com/products/ETH-USD/candles?granularity=86400')
-      .then((response) => {
+        var start= new Date();
+        start.setDate(start.getDate() -1);
+        start=start.toISOString()
+      this.callcoinbase(start, now, 300);
+  }
+   sevenDayGraph() {
+        var now = new Date();
 
+        now=now.toISOString()
+
+        var start= new Date();
+        start.setDate(start.getDate() -7);
+        start=start.toISOString()
+      this.callcoinbase(start, now, 3600);
+  }
+   onemonthsGraph() {
+        var now = new Date();
+
+        now=now.toISOString()
+
+        var start= new Date();
+        start.setDate(start.getDate() -30);
+        start=start.toISOString()
+      this.callcoinbase(start, now, 21600);
+  }
+   threemonthsGraph() {
+        var now = new Date();
+
+        now=now.toISOString()
+
+        var start= new Date();
+        start.setDate(start.getDate() -90);
+        start=start.toISOString()
+      this.callcoinbase(start, now, 86400);
+  }
+   oneYearGraph() {
+        var now = new Date();
+
+        now=now.toISOString()
+
+        var start= new Date();
+        start.setDate(start.getDate() -182);
+        start=start.toISOString()
+      this.callcoinbase(start, now, 86400);
+  }
+
+    callcoinbase(startDate, endDate, period) {
+axios.get(`https://api.gdax.com/products/ETH-USD/candles?start=${startDate}&end=${endDate}&granularity=${period}`).then((response) => {
         const Data = response.data.reverse();
         const chartData = {
           labels: Data.map(transac => timeConverter(transac[0])),
@@ -42,18 +89,18 @@ class CoinbaseChartETH extends Component {
               label: 'Price ETH/USD',
               fill: false,
               lineTension: 0.1,
-              backgroundColor: 'rgb(255,255,224)',
-              borderColor: 'rgb(255,255,224)',
+              backgroundColor: 'blue' ,
+              borderColor: 'blue' ,
               borderCapStyle: 'butt',
               borderDash: [],
               borderDashOffset: 0.0,
               borderJoinStyle: 'miter',
-              pointBorderColor: 'rgb(255,255,224)',
-              pointBackgroundColor: '#fff',
+              pointBorderColor: 'blue' ,
+              pointBackgroundColor: 'blue' ,
               pointBorderWidth: 1,
               pointHoverRadius: 5,
-              pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-              pointHoverBorderColor: 'rgba(220,220,220,1)',
+              pointHoverBackgroundColor: 'blue' ,
+              pointHoverBorderColor: 'blue' ,
               pointHoverBorderWidth: 2,
               pointRadius: 1,
               pointHitRadius: 10,
@@ -65,10 +112,26 @@ class CoinbaseChartETH extends Component {
         this.setState({ chartData });
       });
   }
+ componentDidMount(){
+      var now = new Date();
+
+        now=now.toISOString()
+
+        var start= new Date();
+        start.setDate(start.getDate() -182);
+        start=start.toISOString()
+      this.callcoinbase(start, now, 86400);
+}
 
   render() {
     return (
       <div className="chart">
+          <button onClick={() => this.oneDayGraph()}>1D</button>
+          <button onClick={() => this.sevenDayGraph()}>7D</button>
+
+          <button onClick={() => this.onemonthsGraph()}>1M</button>
+          <button onClick={() => this.threemonthsGraph()}>3M</button>
+          <button onClick={() => this.oneYearGraph()}>6M</button>
         <Line
           data={this.state.chartData}
           width={80}

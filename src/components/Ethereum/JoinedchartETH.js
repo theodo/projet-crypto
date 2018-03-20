@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { Line } from 'react-chartjs-2';
 
-class Joinedchart extends Component {
+class JoinedchartETH extends Component {
 
 constructor(props){
    super(props);
@@ -100,4 +100,4 @@ render() {
 }
 }
 
-export default Joinedchart;
+export default JoinedchartETH;

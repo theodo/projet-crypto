@@ -17,21 +17,21 @@ import CoinMarketPlace from './components/Bitcoin/CoinMarketPlace';
 import Poloniex from './components/Bitcoin/Poloniex';
 
 import Bittrex10last from './components/Bitcoin/Bittrex10last';
-// import CoinBase10last from './components/Bitcoin/Coinbase10last';
+import CoinBase10last from './components/Bitcoin/CoinBase10last';
 import Poloniex10last from './components/Bitcoin/Poloniex10last';
 
-import PoloniexChartETH from './components/Ethereum/PoloniexChartETH';
-import BittrexChartETH from './components/Ethereum/BittrexChartETH';
-import CoinbaseChartETH from './components/Ethereum/CoinbaseChartETH';
-// import JoinedchartETH from './components/Ethereum/joinedChartETH';
+ import PoloniexChartETH from './components/Ethereum/PoloniexChartEth';
+ import BittrexChartETH from './components/Ethereum/BittrexChartEth';
+ import CoinbaseChartETH from './components/Ethereum/CoinbaseChartEth';
+ import JoinedchartETH from './components/Ethereum/JoinedchartETH';
 
-import CoinbaseETH from './components/Ethereum/CoinbaseETH';
-import CoinMarketPlaceETH from './components/Ethereum/CoinMarketPlaceETH';
-import PoloniexETH from './components/Ethereum/PoloniexETH';
+import CoinbaseETH from './components/Ethereum/CoinbaseEth';
+import CoinMarketPlaceETH from './components/Ethereum/CoinMarketPlaceEth';
+import PoloniexETH from './components/Ethereum/PoloniexEth';
 
 import Bittrex10lastETH from './components/Ethereum/Bittrex10lastETH';
-// import CoinBase10lastETH from './components/Ethereum/Coinbase10lastETH';
-import Poloniex10lastETH from './components/Ethereum/Poloniex10lastETH';
+import CoinBase10lastETH from './components/Ethereum/CoinBase10lastETH';
+import Poloniex10lastETH from './components/Ethereum/Poloniex10lastEth';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Tabs, Tab} from 'material-ui/Tabs';
@@ -98,7 +98,7 @@ class App extends Component {
 }
 
 class ContentBitcoin extends Component {
-    constructor(props) {
+  constructor(props) {
         super(props);
         this.state = {
             chartData1: {
@@ -112,41 +112,59 @@ class ContentBitcoin extends Component {
                 labels: [],
                 datasets: [],
             };
-        axios('https://poloniex.com/public?command=returnChartData&currencyPair=USDT_BTC&start=1489536000&end=1519776000&period=86400')
-      .then((response) => {
 
-        const Datapoloniex = response.data;
-        chartData1 = {
-            labels: Datapoloniex.map(k => timeConverter(k.date)),
-            datasets: [
-             {
-                  label: 'Poloniex USD/BTC',
-                  fill: false,
-                  lineTension: 0.1,
-                  backgroundColor: 'rgba(75,192,192,0.4)',
-                  borderColor: 'rgba(75,192,192,1)',
-                  borderCapStyle: 'butt',
-                  borderDash: [],
-                  borderDashOffset: 0.0,
-                  borderJoinStyle: 'miter',
-                  pointBorderColor: 'rgba(75,192,192,1)',
-                  pointBackgroundColor: '#fff',
-                  pointBorderWidth: 1,
-                  pointHoverRadius: 5,
-                  pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-                  pointHoverBorderColor: 'rgba(220,220,220,1)',
-                  pointHoverBorderWidth: 2,
-                  pointRadius: 1,
-                  pointHitRadius: 10,
-                  data: Datapoloniex.map(d => d.open),
+        var a=Math.trunc(Date.now()/1000)
+        var b=a-90300
 
-        }]
-      }
-      })
-     axios('https://api.gdax.com/products/BTC-USD/candles?granularity=86400')
-      .then((response) => {
+        a=a.toString();
+        b=b.toString();
 
-          const Datacoinbase = response.data.reverse();
+        var now = new Date();
+
+        now=now.toISOString()
+
+        var start= new Date();
+        start.setDate(start.getDate() -1);
+        start=start.toISOString()
+
+        axios.all([
+            axios.get('https://poloniex.com/public?command=returnChartData&currencyPair=USDT_BTC&start='+b+'&end='+a+'&period=300'),
+            axios.get('https://api.gdax.com/products/BTC-USD/candles?start='+start+'&end='+now+'&granularity=300')
+        ])
+        .then(axios.spread((poloniexResponse, gdaxResponse) => {
+            const Datapoloniex = poloniexResponse.data;
+            chartData1 = {
+                labels: Datapoloniex.map(k => timeConverter(k.date)),
+                datasets: [
+                    {
+                        label: 'Poloniex USD/BTC',
+                        fill: false,
+                        lineTension: 0.1,
+                        backgroundColor: 'rgba(75,192,192,0.4)',
+                        borderColor: 'rgba(75,192,192,1)',
+                        borderCapStyle: 'butt',
+                        borderDash: [],
+                        borderDashOffset: 0.0,
+                        borderJoinStyle: 'miter',
+                        pointBorderColor: 'rgba(75,192,192,1)',
+                        pointBackgroundColor: '#fff',
+                        pointBorderWidth: 1,
+                        pointHoverRadius: 5,
+                        pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+                        pointHoverBorderColor: 'rgba(220,220,220,1)',
+                        pointHoverBorderWidth: 2,
+                        pointRadius: 1,
+                        pointHitRadius: 10,
+                        data: Datapoloniex.map(d => d.open),
+
+                    }]
+            }
+
+
+            const Datacoinbase = gdaxResponse.data.reverse();
+
+            // chartData1.labels.push({label:Datacoinbase.map(transac => timeConverter(transac[0]))})
+
           chartData1.datasets.push(
               {
                   label: 'Coinbase USD/BTC',
@@ -170,9 +188,8 @@ class ContentBitcoin extends Component {
                   data: Datacoinbase.map(transac => transac[3]),
               }
           )
-      }).then( () =>
-        this.setState({ chartData1 })
-     )
+        this.setState({ chartData1 });
+        }));
 
       }
 
@@ -226,7 +243,7 @@ class ContentBitcoin extends Component {
             <div id="container">
                 <div className="Exchange" className="box1">
                   Last ten transactions: <br></br>
-                  {/* <CoinBase10last/> */}
+                  { <CoinBase10last/> }
                 </div>
                 <div className="Exchange" className="box2">
                   Last ten transactions: <br></br>
@@ -267,99 +284,60 @@ class ContentETH extends Component {
             };
 
         var a=Math.trunc(Date.now()/1000)
-        var b=a-1*86400
+        var b=a-90300
 
         a=a.toString();
         b=b.toString();
 
+        var now = new Date();
 
-        axios('https://poloniex.com/public?command=returnChartData&currencyPair=USDT_BTC&start='+b+'&end='+a+'&period=300')
-      .then((response) => {
+        now=now.toISOString()
 
-        const Datapoloniex = response.data;
-        chartData1 = {
-            labels: Datapoloniex.map(k => timeConverter(k.date)),
-            datasets: [
-             {
-                  label: 'Poloniex USD/BTC',
-                  fill: false,
-                  lineTension: 0.1,
-                  backgroundColor: 'rgba(75,192,192,0.4)',
-                  borderColor: 'rgba(75,192,192,1)',
-                  borderCapStyle: 'butt',
-                  borderDash: [],
-                  borderDashOffset: 0.0,
-                  borderJoinStyle: 'miter',
-                  pointBorderColor: 'rgba(75,192,192,1)',
-                  pointBackgroundColor: '#fff',
-                  pointBorderWidth: 1,
-                  pointHoverRadius: 5,
-                  pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-                  pointHoverBorderColor: 'rgba(220,220,220,1)',
-                  pointHoverBorderWidth: 2,
-                  pointRadius: 1,
-                  pointHitRadius: 10,
-                  data: Datapoloniex.map(d => d.open),
+        var start= new Date();
+        start.setDate(start.getDate() -1);
+        start=start.toISOString()
 
-        }]
-      }
-      })
+        axios.all([
+            axios.get('https://poloniex.com/public?command=returnChartData&currencyPair=USDT_ETH&start='+b+'&end='+a+'&period=300'),
+            axios.get('https://api.gdax.com/products/ETH-USD/candles?start='+start+'&end='+now+'&granularity=300')
+        ])
+        .then(axios.spread((poloniexResponse, gdaxResponse) => {
+            const Datapoloniex = poloniexResponse.data;
+            chartData1 = {
+                labels: Datapoloniex.map(k => timeConverter(k.date)),
+                datasets: [
+                    {
+                        label: 'Poloniex USD/ETH',
+                        fill: false,
+                        lineTension: 0.1,
+                        backgroundColor: 'rgba(75,192,192,0.4)',
+                        borderColor: 'rgba(75,192,192,1)',
+                        borderCapStyle: 'butt',
+                        borderDash: [],
+                        borderDashOffset: 0.0,
+                        borderJoinStyle: 'miter',
+                        pointBorderColor: 'rgba(75,192,192,1)',
+                        pointBackgroundColor: '#fff',
+                        pointBorderWidth: 1,
+                        pointHoverRadius: 5,
+                        pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+                        pointHoverBorderColor: 'rgba(220,220,220,1)',
+                        pointHoverBorderWidth: 2,
+                        pointRadius: 1,
+                        pointHitRadius: 10,
+                        data: Datapoloniex.map(d => d.open),
 
-     axios.get('https://bittrex.com/api/v1.1/public/getmarkethistory?market=USDT-BTC')
-      .then((response) => {
-
-        const Datachart = response.data.result.map(k => k.TimeStamp).reverse();
-        //chartData1.labels.push({label:response.data.result.map(k => k.TimeStamp).reverse()})
-        chartData1.datasets.push(
-
-            {
-                  label: 'Price',
-                  fill: false,
-                  lineTension: 0.1,
-                  backgroundColor: 'red',
-                  borderColor: 'red',
-                  borderCapStyle: 'butt',
-                  borderDash: [],
-                  borderDashOffset: 0.0,
-                  borderJoinStyle: 'miter',
-                  pointBorderColor: 'red',
-                  pointBackgroundColor: '#fff',
-                  pointBorderWidth: 1,
-                  pointHoverRadius: 5,
-                  pointHoverBackgroundColor: 'red',
-                  pointHoverBorderColor: 'red',
-                  pointHoverBorderWidth: 2,
-                  pointRadius: 1,
-                  pointHitRadius: 10,
-                  data: Datachart.map(d => d.Price),
+                    }]
             }
-          )
-
-      }).then( () =>
-        this.setState({ chartData1 })
-     )
-      var now = new Date();
-
-      now=now.toISOString()
-
-      var start= new Date();
-       start.setDate(start.getDate() -1);
-      start=start.toISOString()
-      console.log(start)
-      console.log(now)
 
 
+            const Datacoinbase = gdaxResponse.data.reverse();
 
-     axios('https://api.gdax.com/products/BTC-USD/candles?start='+start+'&end='+now+'&granularity=300')
-      .then((response) => {
-
-          const Datacoinbase = response.data.reverse();
-
-        //chartData1.labels.push({label:response.data.reverse()})
+            // chartData1.labels.push({label:Datacoinbase.map(transac => timeConverter(transac[0]))})
 
           chartData1.datasets.push(
               {
-                  label: 'Coinbase USD/BTC',
+                  label: 'Coinbase USD/ETH',
                   fill: false,
                   lineTension: 0.1,
                   backgroundColor: 'blue',
@@ -380,11 +358,11 @@ class ContentETH extends Component {
                   data: Datacoinbase.map(transac => transac[3]),
               }
           )
-      }).then( () =>
-        this.setState({ chartData1 })
-     )
+        this.setState({ chartData1 });
+        }));
 
       }
+
 
   render() {
     return (
@@ -406,7 +384,7 @@ class ContentETH extends Component {
                 <CoinbaseETH />
                   <Divider section />
                 Chart:
-                <CoinbaseChartETH />
+                  { <CoinbaseChartETH /> }
               </div>
               <div className="Exchange" className="box2">
                   <a className="title">CoinMarketPlace </a>
@@ -415,7 +393,7 @@ class ContentETH extends Component {
                  <CoinMarketPlaceETH />
                   <Divider section />
                 Bittrex Chart:
-                 <BittrexChartETH />
+                  { <BittrexChartETH /> }
               </div>
               <div className="Exchange" className="box3">
                   <a className="title">Poloniex </a>
@@ -424,7 +402,7 @@ class ContentETH extends Component {
                 <PoloniexETH />
                   <Divider section />
                 Chart:
-               <PoloniexChartETH />
+                  { <PoloniexChartETH /> }
               </div>
             </div>
 
@@ -435,7 +413,7 @@ class ContentETH extends Component {
             <div className="Last Ten Transactions">
               <div className="Exchange" className="box1">
                 Last ten transactions: <br></br>
-                  {/* <CoinBase10last/> */}
+                  {<CoinBase10lastETH/> }
               </div>
               <div className="Exchange" className="box1">
                   Last ten transactions: <br></br>
@@ -450,7 +428,7 @@ class ContentETH extends Component {
 
               <div className="Exchange">
                 Chart:
-                <Joinedchart chartData1={this.state.chartData1}/>
+                <JoinedchartETH chartData1={this.state.chartData1}/>
 
               </div>
 
