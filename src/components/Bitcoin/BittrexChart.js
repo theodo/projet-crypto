@@ -28,13 +28,13 @@ class BittrexChart extends Component {
 
   componentDidMount() {
 
-     axios.get('https://bittrex.com/api/v1.1/public/getmarkethistory?market=USDT-BTC')
+     axios.get('https://api.kraken.com/0/public/OHLC?pair=XBTUSD&interval=60&since=1513338300')
       .then((response) => {
 
         const Data = response.data.result;
-        console.log(Data)
+        console.log(Data.XXBTZUSD)
         const chartData = {
-          labels: Data.map(k => k.TimeStamp).reverse(),
+          labels: Data.XXBTZUSD.map(k => timeConverter(k[0])),
           datasets: [
             {
               label: 'Price',
@@ -55,7 +55,7 @@ class BittrexChart extends Component {
                   pointHoverBorderWidth: 2,
                   pointRadius: 1,
                   pointHitRadius: 10,
-                  data: Data.map(d => d.Price),
+                  data: Data.XXBTZUSD.map(d => d[1]),
             }
           ]
         }
