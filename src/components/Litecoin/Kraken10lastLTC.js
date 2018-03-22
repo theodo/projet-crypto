@@ -8,7 +8,7 @@ import { Table, Menu, Icon, Label } from 'semantic-ui-react';
 
 
 
-class Bittrex10lastLTC extends Component {
+class Kraken10lastLTC extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -64,4 +64,4 @@ class Bittrex10lastLTC extends Component {
     }
 
 }
-export default Bittrex10lastLTC ;
+export default Kraken10lastLTC ;

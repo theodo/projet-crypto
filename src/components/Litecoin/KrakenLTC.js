@@ -4,7 +4,7 @@ import './Exchange.css'
 
 //const API_URL = 'https://api.coinmarketcap.com/v1/ticker/'
 
-class CoinMarketPlaceLTC extends Component {
+class KrakenLTC extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -45,4 +45,4 @@ class CoinMarketPlaceLTC extends Component {
     }
 }
 
-export default CoinMarketPlaceLTC ;
+export default KrakenLTC ;

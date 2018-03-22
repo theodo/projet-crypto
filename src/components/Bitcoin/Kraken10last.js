@@ -8,7 +8,7 @@ import { Table, Menu, Icon, Label } from 'semantic-ui-react';
 
 
 
-class Bittrex10lastETH extends Component {
+class Kraken10last extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -18,9 +18,9 @@ class Bittrex10lastETH extends Component {
     }
 
     componentDidMount() {
-        axios.get('https://api.kraken.com/0/public/OHLC?pair=ETHUSD&interval=60&since=1513338300').then((response) => {
-            console.log(response.data.result.XETHZUSD.slice(0,3))
-            this.setState({ data: response.data.result.XETHZUSD, requestFailed: false });
+        axios.get('https://api.kraken.com/0/public/OHLC?pair=XBTUSD&interval=60&since=1513338300').then((response) => {
+            console.log(response.data.result.XXBTZUSD.slice(0,3))
+            this.setState({ data: response.data.result.XXBTZUSD, requestFailed: false });
         }).catch((err) => {
             alert("Error with the API");
             console.log(err)
@@ -64,4 +64,4 @@ class Bittrex10lastETH extends Component {
     }
 
 }
-export default Bittrex10lastETH
+export default Kraken10last
