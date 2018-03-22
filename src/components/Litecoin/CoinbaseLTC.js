@@ -35,7 +35,7 @@ class CoinbaseLTC extends Component {
         <div id="data-container">
           { this.state.currentPrice ?
             <div id="left" className='box'>
-              <div className="heading">${this.state.currentPrice}</div>
+              <div className="heading">${Math.trunc(this.state.currentPrice)}</div>
 
             </div>
           : null}

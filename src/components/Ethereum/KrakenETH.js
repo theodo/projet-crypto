@@ -35,7 +35,7 @@ class KrakenETH extends Component {
                         if(dynamicData.name === "Ethereum"){
                             return (
                                 <div id="left" className='box' key={key}>
-                                    <div className="heading">${dynamicData.price_usd}</div>
+                                    <div className="heading">${Math.trunc(dynamicData.price_usd)}</div>
                                 </div>
                             )
                         }})}

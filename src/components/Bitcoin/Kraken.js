@@ -35,7 +35,7 @@ class Kraken extends Component {
                         if(dynamicData.name === "Bitcoin"){
                             return (
                                 <div id="left" className='box' key={key}>
-                                    <div className="heading">${dynamicData.price_usd}</div>
+                                    <div className="heading">${Math.trunc(dynamicData.price_usd)}</div>
                                     <div className="subtext">Updated every 10 seconds</div>
                                 </div>
                             )

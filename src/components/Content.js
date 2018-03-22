@@ -29,7 +29,7 @@ import CoinbaseChartETH from './Ethereum/CoinbaseChartEth';
 import JoinedchartETH from './Ethereum/JoinedchartETH';
 
 import CoinbaseETH from './Ethereum/CoinbaseEth';
-import KrakenETH from './Ethereum/Kraken';
+import KrakenETH from './Ethereum/KrakenETH';
 import PoloniexETH from './Ethereum/PoloniexEth';
 
 import Kraken10lastETH from './Ethereum/Kraken10lastETH';

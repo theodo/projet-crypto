@@ -33,7 +33,7 @@ class PoloniexETH extends Component {
             return(
                 <div id="data-container">
                     <div id="left" className='box'>
-                      <div className="heading">${this.state.data["USDT_ETH"]["last"]}</div>
+                      <div className="heading">${Math.trunc(this.state.data["USDT_ETH"]["last"])}</div>
                     </div>
                 </div>
             );
