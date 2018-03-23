@@ -9,15 +9,20 @@ class Kraken extends Component {
         super(props)
         this.state = {
             requestFailed: true,
-            data: {}
+            data: {},
+            tampon: {}
+
         }
+
 
     }
 
     componentDidMount() {
-        axios.get('https://api.coinmarketcap.com/v1/ticker/').then((response) => {
-            console.log(response.data)
-            this.setState({ data: response.data, requestFailed: false });
+        axios.get('https://api.kraken.com/0/public/OHLC?pair=XBTUSD').then((response) => {
+            console.log(response.data.result.XXBTZUSD)
+            this.setState({ data: response.data.result.XXBTZUSD, requestFailed: false, tampon: response.data.result.XXBTZUSD });
+            console.log(this.state.tampon.length)
+
         }).catch((err) => {
             alert("Error with the API");
             console.log(err)
@@ -31,15 +36,10 @@ class Kraken extends Component {
         } else {
             return(
                 <div id="data-container">
-                    {this.state.data.map(function(dynamicData, key){
-                        if(dynamicData.name === "Bitcoin"){
-                            return (
-                                <div id="left" className='box' key={key}>
-                                    <div className="heading">${Math.trunc(dynamicData.price_usd)}</div>
-                                    <div className="subtext">Updated every 10 seconds</div>
+                                <div id="left" className='box'>
+                                    <div className="heading">${this.state.data[719][1]}</div>
                                 </div>
-                            )
-                        }})}
+
                 </div>
             );
         }
