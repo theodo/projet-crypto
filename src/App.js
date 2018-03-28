@@ -1,6 +1,7 @@
 import React from 'react'
 import Homepage from './components/Homepage';
 import Content from './components/Content';
+import Content_Example from './components/Exemple';
 import {
   BrowserRouter,
   Route,
@@ -15,9 +16,12 @@ import {
   Button,
 } from 'semantic-ui-react'
 
+ 
+
 const App = () => (
   <BrowserRouter>
     <div>
+       
      <Responsive {...Responsive.onlyComputer}>
         <Segment inverted textAlign='center' style={{ minHeight: 50, padding: '1em 0em' }} vertical>
             <Menu
@@ -37,7 +41,7 @@ const App = () => (
                       </Menu.Item>
                       <Menu.Item>
                            <Button as='a'>
-                               <Link to="/example"> Example Result</Link>
+                               <Link to="/example"> Spread Result</Link>
                            </Button>
                       </Menu.Item>
                    </div>
@@ -47,7 +51,7 @@ const App = () => (
      </Responsive>
             <Route exact path='/home' component={Homepage}/>
             <Route exact path='/data' component={Content}/>
-            <Route exact path='/example' component={Content}/>
+            <Route exact path='/example' component={Content_Example}/>
     </div>
   </BrowserRouter>
 )
