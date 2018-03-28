@@ -37,7 +37,7 @@ class Kraken extends Component {
             return(
                 <div id="data-container">
                                 <div id="left" className='box'>
-                                    <div className="heading">${this.state.data[719][1]}</div>
+                                    <div className="heading">${Math.trunc(this.state.data[719][1])}</div>
                                 </div>
 
                 </div>

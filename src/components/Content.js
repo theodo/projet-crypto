@@ -285,15 +285,15 @@ class ContentBitcoin extends Component {
 
             <div id="container">
                 <div className="Exchange" className="box1">
-                  Last ten transactions: <br></br>
+                  Last 30min summary: <br></br>
                   { <CoinBase10last/> }
                 </div>
                 <div className="Exchange" className="box2">
-                  Last ten transactions: <br></br>
+                  Last 30min summary: <br></br>
                     <Kraken10last/>
                 </div>
                 <div className="Exchange" className="box3">
-                  Last ten transactions: <br></br>
+                  Last 30min summary: <br></br>
                   <Poloniex10last/>
                 </div>
             </div>
@@ -482,15 +482,15 @@ class ContentETH extends Component {
 
             <div className="Last Ten Transactions">
               <div className="Exchange" className="box1">
-                Last ten transactions: <br></br>
+                  Last 30min summary: <br></br>
                   {<CoinBase10lastETH/> }
               </div>
               <div className="Exchange" className="box1">
-                  Last ten transactions: <br></br>
+                  Last 30min summary: <br></br>
                     <Kraken10lastETH />
               </div>
               <div className="Exchange" className="box1">
-                  Last ten transactions: <br></br>
+                  Last 30min summary: <br></br>
                   <Poloniex10lastETH />
               </div>
             </div>

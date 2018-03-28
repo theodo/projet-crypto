@@ -33,7 +33,7 @@ class CoinBase10last extends Component {
     }
 
     componentDidMount() {
-        axios.get('https://api.gdax.com/products/BTC-USD/candles?granularity=60').then((response) => {
+        axios.get('https://api.gdax.com/products/BTC-USD/candles?granularity=300').then((response) => {
             console.log(response.data.slice(0, 3))
             this.setState({ data: response.data, requestFailed: false });
         }).catch((err) => {
@@ -58,13 +58,13 @@ class CoinBase10last extends Component {
               </Table.Header>
 
               <Table.Body>
-                {data.slice(0, 8).map(
+                {data.slice(0, 7).map(
                   (elem, key) =>
                     {
                         return(
                       <Table.Row key={key}>
                         <Table.Cell>{timeConverter(elem[0])}</Table.Cell>
-                        <Table.Cell active>{elem[3]}</Table.Cell>
+                        <Table.Cell active>{Math.trunc(elem[3])}</Table.Cell>
                       </Table.Row>);
                     }
                   )}
