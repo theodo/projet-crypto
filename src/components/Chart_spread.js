@@ -4,6 +4,9 @@ import axios from 'axios';
 import { Table, Menu, Icon, Label } from 'semantic-ui-react';
 
 
+let DATA_STATIC = JSON.parse('[{"rates_date": 1522161465.8813398, "rates": [{"market": "BitFinex", "price": "458.75000000", "volume": 329731.81901234}, {"market": "Bittrex", "price": "461.04375000", "volume": 11941.87853938}, {"market": "C-Cex", "price": "525.96006998", "volume": 0.15339141}, {"market": "Cex.io", "price": "468.76000000", "volume": 4540.501489}, {"market": "Exmo", "price": "486.99000000", "volume": 6475.8980916}, {"market": "Hitbtc", "price": "469.96000000", "volume": 10359.802}, {"market": "Kraken", "price": "460.41000000", "volume": 112877.3774565}, {"market": "Livecoin", "price": "476.00000000", "volume": 397.44638944}, {"market": "Poloniex", "price": "460.00395234", "volume": 13601.77469888}, {"market": "wexnz", "price": "468.87202000", "volume": 6767.38219}]}, {"rates_date": 1522161469.49707, "rates": [{"market": "BitFinex", "price": "458.75000000", "volume": 329731.81901234}, {"market": "Bittrex", "price": "461.04375000", "volume": 11941.87853938}, {"market": "C-Cex", "price": "525.96006998", "volume": 0.15339141}, {"market": "Cex.io", "price": "468.76000000", "volume": 4540.501489}, {"market": "Exmo", "price": "486.99000000", "volume": 6475.8980916}, {"market": "Hitbtc", "price": "469.96000000", "volume": 10359.802}, {"market": "Kraken", "price": "460.41000000", "volume": 112877.3774565}, {"market": "Livecoin", "price": "476.00000000", "volume": 397.44638944}, {"market": "Poloniex", "price": "460.00395234", "volume": 13601.77469888}, {"market": "wexnz", "price": "468.87202000", "volume": 6767.38219}]}, {"rates_date": 1522161491.740586, "rates": [{"market": "BitFinex", "price": "458.75000000", "volume": 329731.81901234}, {"market": "Bittrex", "price": "461.04375000", "volume": 11941.87853938}, {"market": "C-Cex", "price": "525.96006998", "volume": 0.15339141}, {"market": "Cex.io", "price": "468.04000000", "volume": 4543.93318}, {"market": "Exmo", "price": "486.99000000", "volume": 6474.08311914}, {"market": "Hitbtc", "price": "469.40000000", "volume": 10363.847}, {"market": "Kraken", "price": "460.29000000", "volume": 112913.4977093}, {"market": "Livecoin", "price": "476.00000000", "volume": 397.44638944}, {"market": "Poloniex", "price": "460.00533866", "volume": 13602.68805295}, {"market": "wexnz", "price": "468.43000000", "volume": 6762.49462}]}, {"rates_date": 1522161783.9715517, "rates": [{"market": "BitFinex", "price": "459.67000000", "volume": 329439.80332733}, {"market": "Bittrex", "price": "461.04375000", "volume": 11939.9333004}, {"market": "C-Cex", "price": "525.96006998", "volume": 0.15339141}, {"market": "Cex.io", "price": "468.76000000", "volume": 4501.72753}, {"market": "Exmo", "price": "486.62400000", "volume": 6479.10696285}, {"market": "Hitbtc", "price": "469.67000000", "volume": 10379.958}, {"market": "Kraken", "price": "461.29000000", "volume": 112425.22410582}, {"market": "Livecoin", "price": "476.00000000", "volume": 396.5936912}, {"market": "Poloniex", "price": "462.86384145", "volume": 13582.36374577}, {"market": "wexnz", "price": "468.05435000", "volume": 6752.08562}]}]')
+
+
 function timeConverter(UNIX_timestamp){
     var a = new Date(UNIX_timestamp * 1000);
     var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -16,27 +19,72 @@ function timeConverter(UNIX_timestamp){
     var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
     return time;}
 
+function APICall(elems){
+
+    var Kraken_price;
+    var Poloniex_price;
+    var Bittrex_price;
+    var maximum_price;
+    var minimum_price;
+    let data = [];
+
+    elems.map( (element) => {
+        if (element.market === 'Kraken') {
+            Kraken_price = elems.price;
+            maximum_price = Kraken_price;
+            minimum_price = Kraken_price
+        }
+        else if (element.market === 'Bittrex') {
+            Bittrex_price = element.price;
+            if (Bittrex_price > maximum_price) {
+                maximum_price = Bittrex_price;
+            }
+            else if (Bittrex_price < minimum_price) {
+                minimum_price = Bittrex_price;
+            }
+        }
+        else if (element.market === 'Poloniex') {
+            Poloniex_price = element.price;
+            if (Poloniex_price > maximum_price) {
+                maximum_price = Poloniex_price;
+            }
+            else if (Poloniex_price < minimum_price) {
+                minimum_price = Poloniex_price;
+            }
+        }
+
+        data.push([Kraken_price, Bittrex_price, Poloniex_price, maximum_price, minimum_price])
+    });
+
+    return data
+    }
+
+
 
 class Spread extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
-            requestFailed: true,
-            data: {}
-        }
+            requestFailed: false, //à changer
+            data: DATA_STATIC
+
+        };
     }
 
 
     componentDidMount() {
-        axios.get('http://ec2-34-217-63-15.us-west-2.compute.amazonaws.com:8000/btc-lovers').then((response) => {
-            this.setState({data: response.data.slice(0,61), requestFailed: false});
-        }).catch((err) => {
-            alert("Error with the API");
-            console.log(err)
-        })
-    }
 
-    render() {
+    }
+  //      axios.get('http://ec2-34-217-63-15.us-west-2.compute.amazonaws.com:8000/btc-lovers').then((response) => {
+   //         this.setState({data: reponse.data, requestFailed: false});
+     //       console.log(this.state.data)
+     //   }).catch((err) => {
+       //     alert("Error with the API");
+         //   console.log(err)
+     //   })
+   // }
+
+    render(){
 
         if (this.state.requestFailed) {
             return (<p>Failure, abort mission...</p>);
@@ -47,45 +95,32 @@ class Spread extends Component {
                     <Table.Header>
                         <Table.Row>
                             <Table.HeaderCell negative>TimeStamp</Table.HeaderCell>
-                            <Table.HeaderCell positive>Kraken</Table.HeaderCell>
-                            <Table.HeaderCell positive>Bittrex</Table.HeaderCell>
-                            <Table.HeaderCell positive>Poloniex</Table.HeaderCell>
-                             <Table.HeaderCell positive>Maximum Price</Table.HeaderCell>
+                            <Table.HeaderCell negative>BitFinex Price</Table.HeaderCell>
+                            <Table.HeaderCell negative>Bittrex Price</Table.HeaderCell>
+                            <Table.HeaderCell negative>Kraken Price</Table.HeaderCell>
+                            <Table.HeaderCell negative>BitFinex Price</Table.HeaderCell>
+                             <Table.HeaderCell class="positive">Max Spread</Table.HeaderCell>
+
                         </Table.Row>
                     </Table.Header>
 
                     <Table.Body>
-                        {data.map(
-                            (elem) => {
-                                let tabledata =
-                                elem.rates.map(
-                                    (elems) => {
-                                        if (elems.market === 'Kraken'){
-                                            var date = elem.rates_date
-                                            var kraken_price = elems.price
-                                            var maximum_price = kraken_price}
-                                        else if (elems.market === 'Bittrex'){
-                                            var Bittrex_price = elems.price
-                                            if (Bittrex_price > maximum_price){
-                                                var maximum_price = Bittrex_price
-                                            }}
-                                        else if (elems.market === 'Poloniex'){
-                                            var Poloniex_price = elems.price
-                                                if (Poloniex_price > maximum_price){
-                                                var maximum_price = Poloniex_price
-                                            }}
+                        {data.reverse().map(
+                            (elem) =>  {
                                             return(
                                                 <Table.Row>
-                                                    <Table.Cell>{date}</Table.Cell>
-                                                    <Table.Cell>{kraken_price}</Table.Cell>
-                                                    <Table.Cell>{Bittrex_price}</Table.Cell>
-                                                    <Table.Cell>{Poloniex_price}</Table.Cell>
-                                                     <Table.Cell>{maximum_price}</Table.Cell>
-                                                </Table.Row>);
+                                                    <Table.Cell>{timeConverter(String(elem[Object.getOwnPropertyNames(elem)[0]]))}</Table.Cell>
+                                                    <Table.Cell>{'$' + String(elem[Object.getOwnPropertyNames(elem)[1]][0].price).slice(0,5)}</Table.Cell>
+                                                    <Table.Cell>{'$' + String(elem[Object.getOwnPropertyNames(elem)[1]][6].price).slice(0,5)}</Table.Cell>
+                                                    <Table.Cell>{'$' + String(elem[Object.getOwnPropertyNames(elem)[1]][8].price).slice(0,5)}</Table.Cell>
+                                                    <Table.Cell>{'$' + String(elem[Object.getOwnPropertyNames(elem)[1]][9].price).slice(0,5)}</Table.Cell>
+                                                    <Table.Cell positive align='center'>{'$' + String(Math.max(elem[Object.getOwnPropertyNames(elem)[1]][9].price,elem[Object.getOwnPropertyNames(elem)[1]][8].price,elem[Object.getOwnPropertyNames(elem)[1]][6].price,elem[Object.getOwnPropertyNames(elem)[1]][0].price) - Math.min(elem[Object.getOwnPropertyNames(elem)[1]][9].price,elem[Object.getOwnPropertyNames(elem)[1]][8].price,elem[Object.getOwnPropertyNames(elem)[1]][6].price,elem[Object.getOwnPropertyNames(elem)[1]][0].price)).slice(0,4)}</Table.Cell>
+                                                </Table.Row>)
 
-                                    });
-                             return (tabledata)
-                            })}
+                                    })
+
+                            }
+
 
                     </Table.Body>
                 </Table>);
