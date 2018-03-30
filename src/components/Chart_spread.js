@@ -81,7 +81,7 @@ class Spread extends Component {
                 this.setState({data: response.data, requestFailed: false}, () => {
                     this.setState({isDataLoaded: true});
                 });
-                console.log(this.state.data)
+
             }).catch((err) => {
                 alert("Error with the API");
                 console.log(err)

@@ -35,7 +35,7 @@ class Poloniex10lastETH extends Component {
         endDate=endDate.toString();
 
         axios.get(`https://poloniex.com/public?command=returnChartData&currencyPair=USDT_ETH&start=${startDate}&end=${endDate}&period=300`).then((response) => {
-            console.log(response.data)
+
             this.setState({ data: response.data.reverse(), requestFailed: false });
         }).catch((err) => {
             alert("Error with the API");

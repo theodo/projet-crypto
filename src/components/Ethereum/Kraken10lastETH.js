@@ -31,7 +31,7 @@ class Kraken10lastETH extends Component {
 
     componentDidMount() {
         axios.get('https://api.kraken.com/0/public/OHLC?pair=ETHUSD&interval=5&since=1513338300').then((response) => {
-            console.log(response.data.result.XXBTZUSD.slice(0,3))
+
             this.setState({ data: response.data.result.XETHZUSD.reverse(), requestFailed: false });
         }).catch((err) => {
             alert("Error with the API");

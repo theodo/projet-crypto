@@ -19,9 +19,9 @@ class Kraken extends Component {
 
     componentDidMount() {
         axios.get('https://api.kraken.com/0/public/OHLC?pair=ETHUSD').then((response) => {
-            console.log(response.data.result.XETHZUSD)
+
             this.setState({ data: response.data.result.XETHZUSD, requestFailed: false, tampon: response.data.result.XETHZUSD });
-            console.log(this.state.tampon.length)
+
 
         }).catch((err) => {
             alert("Error with the API");

@@ -34,7 +34,7 @@ class CoinBase10last extends Component {
 
     componentDidMount() {
         axios.get('https://api.gdax.com/products/BTC-USD/candles?granularity=300').then((response) => {
-            console.log(response.data.slice(0, 3))
+
             this.setState({ data: response.data, requestFailed: false });
         }).catch((err) => {
             alert("Error with the API");

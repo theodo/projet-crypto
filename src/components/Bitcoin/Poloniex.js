@@ -17,7 +17,7 @@ class Poloniex extends Component {
 
     componentDidMount() {
         axios.get('https://poloniex.com/public?command=returnTicker').then((response) => {
-            console.log(response.data)
+
             this.setState({ data: response.data, requestFailed: false });
         }).catch((err) => {
             alert("Error with the API");
