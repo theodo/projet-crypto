@@ -17,6 +17,7 @@ import Paper from 'material-ui/Paper';
 import { Divider, Segment } from 'semantic-ui-react'
 
 import Spread from './Chart_spread'
+import SpreadETH from './Chart_spread_eth'
 
 const styles = {
   headline: {
@@ -44,9 +45,26 @@ class Content_Example extends Component {
   render() {
     return (
       <div>
-          <p>
-            <Spread/>
-          </p>
+        <MuiThemeProvider>
+            <Tabs>
+              <Tab label="Bitcoin" >
+                <div>
+                  <p>
+                    <Spread />
+                  </p>
+                </div>
+              </Tab>
+              <Tab label="Ethereum" >
+                <div>
+                  <p>
+                    <SpreadETH />
+                  </p>
+                </div>
+              </Tab>
+            </Tabs>
+          );
+        </MuiThemeProvider>
+        <Footer />
       </div>
     );
   }

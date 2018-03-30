@@ -63,7 +63,7 @@ function APICall(elems){
 
 
 
-class Spread extends Component {
+class SpreadETH extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -77,7 +77,7 @@ class Spread extends Component {
         componentDidMount() {
 
 
-            axios.get('http://ec2-34-217-63-15.us-west-2.compute.amazonaws.com/btc-lovers').then((response) => {
+            axios.get('http://ec2-34-217-63-15.us-west-2.compute.amazonaws.com/eth-lovers').then((response) => {
                 this.setState({data: response.data, requestFailed: false}, () => {
                     this.setState({isDataLoaded: true});
                 });
@@ -140,4 +140,4 @@ class Spread extends Component {
 
         }
     }
-export default Spread;
+export default SpreadETH;
