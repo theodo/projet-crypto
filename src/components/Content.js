@@ -78,7 +78,16 @@ function timeConverter(UNIX_timestamp){
 }
 // La classe Content contient les Tabs par monnaie ainsi que leur Content
 class Content extends Component {
+  state = {
+    renderETH: false
+  }
+
+  renderETH() {
+    this.setState({ renderETH: true })
+  }
+
   render() {
+    const { renderETH } = this.state
     return (
       <div>
         <MuiThemeProvider>
@@ -90,10 +99,12 @@ class Content extends Component {
                   </p>
                 </div>
               </Tab>
-              <Tab label="Ethereum" >
+              <Tab label="Ethereum" onActive={() => this.renderETH()}>
                 <div>
                   <p>
-                    <ContentETH />
+                    {renderETH &&
+                      <ContentETH />
+                    }
                   </p>
                 </div>
               </Tab>
