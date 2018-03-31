@@ -79,15 +79,20 @@ function timeConverter(UNIX_timestamp){
 // La classe Content contient les Tabs par monnaie ainsi que leur Content
 class Content extends Component {
   state = {
-    renderETH: false
+      renderETH: false,
+      renderLTC:false
   }
 
   renderETH() {
     this.setState({ renderETH: true })
   }
+    renderLTC() {
+    this.setState({ renderLTC: true })
+  }
 
   render() {
     const { renderETH } = this.state
+       const { renderLTC } = this.state
     return (
       <div>
         <MuiThemeProvider>
@@ -108,10 +113,12 @@ class Content extends Component {
                   </p>
                 </div>
               </Tab>
-              <Tab label="Litecoin" >
+              <Tab label="Litecoin" onActive={() => this.renderLTC()}>
                 <div>
                   <p>
-                        Tab 3
+                          {renderLTC &&
+                      <ContentLTC />
+                    }
                   </p>
                 </div>
               </Tab>
@@ -321,6 +328,201 @@ class ContentBitcoin extends Component {
   }
 }
 
+class ContentLTC extends Component {
+  constructor(props) {
+        super(props);
+        this.state = {
+            chartData1: {
+                labels: [],
+                datasets: [],
+            },
+        };
+    }
+  componentDidMount() {
+      let chartData1=  {
+                labels: [],
+                datasets: [],
+            };
+
+        var a=Math.trunc(Date.now()/1000)
+        var b=a-90300
+
+        a=a.toString();
+        b=b.toString();
+
+        var now = new Date();
+
+        now=now.toISOString()
+
+        var start= new Date();
+        start.setDate(start.getDate() -1);
+        start=start.toISOString()
+
+        axios.all([
+            axios.get('https://poloniex.com/public?command=returnChartData&currencyPair=USDT_LTC&start='+b+'&end='+a+'&period=300'),
+            axios.get('https://api.gdax.com/products/LTC-USD/candles?start='+start+'&end='+now+'&granularity=300'),
+            axios.get('https://api.kraken.com/0/public/OHLC?pair=LTCUSD&since='+b+'&interval=5')
+        ])
+        .then(axios.spread((poloniexResponse, gdaxResponse,krakenResponse) => {
+            const Datapoloniex = poloniexResponse.data;
+            chartData1 = {
+                labels: Datapoloniex.map(k => timeConverter(k.date)),
+                datasets: [
+                    {
+                        label: 'Poloniex USD/LTC',
+                        fill: false,
+                        lineTension: 0.1,
+                        backgroundColor: 'rgba(75,192,192,0.4)',
+                        borderColor: 'rgba(75,192,192,1)',
+                        borderCapStyle: 'butt',
+                        borderDash: [],
+                        borderDashOffset: 0.0,
+                        borderJoinStyle: 'miter',
+                        pointBorderColor: 'rgba(75,192,192,1)',
+                        pointBackgroundColor: '#fff',
+                        pointBorderWidth: 1,
+                        pointHoverRadius: 5,
+                        pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+                        pointHoverBorderColor: 'rgba(220,220,220,1)',
+                        pointHoverBorderWidth: 2,
+                        pointRadius: 1,
+                        pointHitRadius: 10,
+                        data: Datapoloniex.map(d => d.open),
+
+                    }]
+            }
+            const Datakraken = krakenResponse.data.result;
+
+          chartData1.datasets.push(
+              {
+                label: 'Kraken USD/LTC',
+                  fill: false,
+                  lineTension: 0.1,
+                  backgroundColor: 'red',
+                  borderColor: 'red',
+                  borderCapStyle: 'butt',
+                  borderDash: [],
+                  borderDashOffset: 0.0,
+                  borderJoinStyle: 'miter',
+                  pointBorderColor: 'red',
+                  pointBackgroundColor: 'red',
+                  pointBorderWidth: 1,
+                  pointHoverRadius: 5,
+                  pointHoverBackgroundColor: 'red',
+                  pointHoverBorderColor: 'red',
+                  pointHoverBorderWidth: 2,
+                  pointRadius: 1,
+                  pointHitRadius: 10,
+                  data: Datakraken.XLTCZUSD.map(d => d[1]),
+
+              }
+          )
+
+            const Datacoinbase = gdaxResponse.data.reverse();
+
+            // chartData1.labels.push({label:Datacoinbase.map(transac => timeConverter(transac[0]))})
+
+          chartData1.datasets.push(
+              {
+                  label: 'Coinbase USD/LTC',
+                  fill: false,
+                  lineTension: 0.1,
+                  backgroundColor: 'blue',
+                  borderColor: 'blue',
+                  borderCapStyle: 'butt',
+                  borderDash: [],
+                  borderDashOffset: 0.0,
+                  borderJoinStyle: 'miter',
+                  pointBorderColor: 'blue',
+                  pointBackgroundColor: '#fff',
+                  pointBorderWidth: 1,
+                  pointHoverRadius: 5,
+                  pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+                  pointHoverBorderColor: 'rgba(220,220,220,1)',
+                  pointHoverBorderWidth: 2,
+                  pointRadius: 1,
+                  pointHitRadius: 10,
+                  data: Datacoinbase.map(transac => transac[3]),
+              }
+          )
+        this.setState({ chartData1 });
+        }));
+
+      }
+
+  render() {
+    return (
+      <div>
+
+           <div>
+
+            <br></br>
+            <div>
+              <img className="logo" src={litecoinImg} alt="ETH Logo" />
+            </div>
+
+            <Segment>
+            <div id="container">
+              <div className="Exchange" className="box1">
+                <a className="title">Coinbase </a>
+                  <Divider section />
+                Current price:
+                <CoinbaseLTC />
+                  <Divider section />
+                Chart:
+                <CoinbaseChartLTC />
+              </div>
+              <div className="Exchange" className="box2">
+                <a className="title">Kraken </a>
+                  <Divider section />
+                Current Price :
+                 <KrakenLTC />
+                  <Divider section />
+                 Chart:
+                 <KrakenChartLTC />
+              </div>
+              <div className="Exchange" className="box3">
+                <a className="title">Poloniex </a>
+                  <Divider section />
+                Current price:
+                <PoloniexLTC />
+                  <Divider section />
+                Chart:
+               <PoloniexChartLTC/>
+              </div>
+            </div>
+
+              <br></br>
+              <br></br>
+              <br></br>
+              <Divider section />
+
+            <div id="container">
+                <div className="Exchange" className="box1">
+                  Last 30min summary: <br></br>
+                  { <Coinbase10lastLTC/> }
+                </div>
+                <div className="Exchange" className="box2">
+                  Last 30min summary: <br></br>
+                    <Kraken10lastLTC/>
+                </div>
+                <div className="Exchange" className="box3">
+                  Last 30min summary: <br></br>
+                  <Poloniex10lastLTC/>
+                </div>
+            </div>
+            </Segment>
+              <div className="Exchange">
+                Chart:
+                <Joinedchart chartData1={this.state.chartData1}/>
+              </div>
+
+      </div>
+          </div>
+    );
+
+  }
+}
 class ContentETH extends Component {
     constructor(props) {
         super(props);

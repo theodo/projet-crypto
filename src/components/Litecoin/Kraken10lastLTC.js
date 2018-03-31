@@ -5,7 +5,18 @@ import { Table, Menu, Icon, Label } from 'semantic-ui-react';
 
 //const API_URL = 'https://api.coinmarketcap.com/v1/ticker/'
 
-
+function timeConverter(UNIX_timestamp){
+    var a = new Date(UNIX_timestamp * 1000);
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var year = a.getFullYear();
+    var month = months[a.getMonth()];
+    var date = a.getDate();
+    var hour = a.getHours();
+    var min = a.getMinutes();
+    var sec = a.getSeconds();
+    var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+    return time;
+}
 
 
 class Kraken10lastLTC extends Component {
@@ -17,10 +28,11 @@ class Kraken10lastLTC extends Component {
         }
     }
 
+
     componentDidMount() {
-        axios.get('https://bittrex.com/api/v1.1/public/getmarkethistory?market=USDT-LTC').then((response) => {
-            console.log(response.data.result.slice(0,3))
-            this.setState({ data: response.data.result, requestFailed: false });
+        axios.get('https://api.kraken.com/0/public/OHLC?pair=LTCUSD&interval=5&since=1513338300').then((response) => {
+
+            this.setState({ data: response.data.result.XLTCZUSD.reverse(), requestFailed: false });
         }).catch((err) => {
             alert("Error with the API");
             console.log(err)
@@ -39,21 +51,19 @@ class Kraken10lastLTC extends Component {
                 <Table.Row>
                   <Table.HeaderCell>Time</Table.HeaderCell>
                   <Table.HeaderCell>Price</Table.HeaderCell>
-                    <Table.HeaderCell>Order Type</Table.HeaderCell>
-                     <Table.HeaderCell>Amount</Table.HeaderCell>
+
                 </Table.Row>
               </Table.Header>
 
               <Table.Body>
-                {data.slice(0, 8).map(
+                {data.slice(0, 7).map(
                   (elem, key) =>
                     {
                         return(
                       <Table.Row key={key}>
-                        <Table.Cell >{elem.TimeStamp.substring(0,10) +  elem.TimeStamp.substring(11,19)}</Table.Cell>
-                        <Table.Cell active>{String(elem.Price).substring(0,12)}</Table.Cell>
-                          <Table.Cell >{elem.OrderType.toLowerCase()}</Table.Cell>
-                          <Table.Cell active>{String(elem.Quantity).substring(0,6)}</Table.Cell>
+                        <Table.Cell >{timeConverter(elem[0])}</Table.Cell>
+                        <Table.Cell active>{Math.trunc(String(elem[1]).substring(0,12))}</Table.Cell>
+
                       </Table.Row>);
                     }
                   )}
@@ -64,4 +74,4 @@ class Kraken10lastLTC extends Component {
     }
 
 }
-export default Kraken10lastLTC ;
+export default Kraken10lastLTC

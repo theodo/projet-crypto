@@ -5,6 +5,18 @@ import { Table, Menu, Icon, Label } from 'semantic-ui-react';
 
 //const API_URL = 'https://api.coinmarketcap.com/v1/ticker/'
 
+function timeConverter(UNIX_timestamp){
+    var a = new Date(UNIX_timestamp * 1000);
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var year = a.getFullYear();
+    var month = months[a.getMonth()];
+    var date = a.getDate();
+    var hour = a.getHours();
+    var min = a.getMinutes();
+    var sec = a.getSeconds();
+    var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+    return time;
+}
 
 class Poloniex10lastLTC extends Component {
     constructor(props){
@@ -16,16 +28,22 @@ class Poloniex10lastLTC extends Component {
     }
 
     componentDidMount() {
-        axios.get('https://poloniex.com/public?command=returnTradeHistory&currencyPair=USDT_LTC').then((response) => {
-            console.log(response.data.slice(0, 3))
-            this.setState({ data: response.data, requestFailed: false });
+        var endDate=Math.trunc(Date.now()/1000)
+        var startDate=endDate-3600
+
+        startDate=startDate.toString();
+        endDate=endDate.toString();
+
+        axios.get(`https://poloniex.com/public?command=returnChartData&currencyPair=USDT_LTC&start=${startDate}&end=${endDate}&period=300`).then((response) => {
+
+            this.setState({ data: response.data.reverse(), requestFailed: false });
         }).catch((err) => {
             alert("Error with the API");
             console.log(err)
         })
     }
 
-        render() {
+    render() {
 
         if(this.state.requestFailed){
             return (<p>Failure, abort mission...</p>);
@@ -35,25 +53,23 @@ class Poloniex10lastLTC extends Component {
             <Table>
               <Table.Header>
                 <Table.Row>
-                  <Table.HeaderCell>TimeStamp</Table.HeaderCell>
+                  <Table.HeaderCell>Time</Table.HeaderCell>
                   <Table.HeaderCell>Price</Table.HeaderCell>
-                  <Table.HeaderCell>Order Type</Table.HeaderCell>
-                    <Table.HeaderCell>Amount</Table.HeaderCell>
+
                 </Table.Row>
               </Table.Header>
 
               <Table.Body>
-                {data.slice(0, 8).map(
-                  (elem, key) => { if (elem.type = 'sell')
+                {data.slice(0, 7).map(
+                  (elem, key) =>
                     {
                         return(
                       <Table.Row key={key}>
-                        <Table.Cell>{elem.date.substring(2,19)}</Table.Cell>
-                        <Table.Cell active>{elem.rate.substring(0,12)}</Table.Cell>
-                          <Table.Cell>{elem.type}</Table.Cell>
-                          <Table.Cell active>{elem.amount.substring(0,6)}</Table.Cell>
+                        <Table.Cell>{timeConverter(String(elem.date).substring(0,19))}</Table.Cell>
+                        <Table.Cell active>{Math.trunc(String(elem.weightedAverage).substring(0,4))}</Table.Cell>
+
                       </Table.Row>);
-                    }
+
                   })}
               </Table.Body>
             </Table>
@@ -62,4 +78,4 @@ class Poloniex10lastLTC extends Component {
     }
 
 }
-export default Poloniex10lastLTC ;
+export default Poloniex10lastLTC
