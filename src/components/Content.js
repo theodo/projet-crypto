@@ -13,7 +13,7 @@ import Footer from './Footer';
 import PoloniexChart from './Bitcoin/PoloniexChart';
 import BittrexChart from './Bitcoin/BittrexChart';
 import CoinbaseChart from './Bitcoin/CoinbaseChart';
-import Joinedchart from './Bitcoin/joinedChart';
+import Joinedchart from './Bitcoin/JoinedChart';
 
 import Coinbase from './Bitcoin/Coinbase';
 import CoinMarketPlace from './Bitcoin/CoinMarketPlace';
