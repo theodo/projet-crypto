@@ -6,7 +6,7 @@ class JoinedchartETH extends Component {
 
 constructor(props){
    super(props);
-   console.log(props.chartData1, 'chartData')
+
    this.state = {
      chartData1:{},
    }

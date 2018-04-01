@@ -23,7 +23,7 @@ function timeConverter(UNIX_timestamp){
 
 
 
-class CoinBase10lastLTC extends Component {
+class Coinbase10lastLTC  extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -33,8 +33,8 @@ class CoinBase10lastLTC extends Component {
     }
 
     componentDidMount() {
-        axios.get('https://api.gdax.com/products/LTC-USD/candles?granularity=60').then((response) => {
-            console.log(response.data.slice(0, 3))
+        axios.get('https://api.gdax.com/products/LTC-USD/candles?granularity=300').then((response) => {
+
             this.setState({ data: response.data, requestFailed: false });
         }).catch((err) => {
             alert("Error with the API");
@@ -58,13 +58,13 @@ class CoinBase10lastLTC extends Component {
               </Table.Header>
 
               <Table.Body>
-                {data.slice(0, 8).map(
+                {data.slice(0, 7).map(
                   (elem, key) =>
                     {
                         return(
                       <Table.Row key={key}>
                         <Table.Cell>{timeConverter(elem[0])}</Table.Cell>
-                        <Table.Cell active>{elem[3]}</Table.Cell>
+                        <Table.Cell active>{Math.trunc(elem[3])}</Table.Cell>
                       </Table.Row>);
                     }
                   )}
@@ -75,4 +75,4 @@ class CoinBase10lastLTC extends Component {
     }
 
 }
-export default CoinBase10lastLTC ;
+export default Coinbase10lastLTC;

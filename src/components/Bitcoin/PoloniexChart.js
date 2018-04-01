@@ -75,10 +75,10 @@ class PoloniexChart extends Component {
           labels: Data.map(k => timeConverter(k.date)),
           datasets: [
             {
-              label: 'Price',
+              label: 'Price BTC/USD',
                   fill: false,
                   lineTension: 0.1,
-                  backgroundColor: 'rgba(75,192,192,0.4)',
+                  backgroundColor: 'rgba(75,192,192,1)',
                   borderColor: 'rgba(75,192,192,1)',
                   borderCapStyle: 'butt',
                   borderDash: [],

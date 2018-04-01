@@ -28,35 +28,82 @@ class CoinbaseChartLTC extends Component {
       chartData:{},
     }
   }
+ oneDayGraph() {
+        var now = new Date();
 
-  componentDidMount() {
+        now=now.toISOString()
 
-     axios.get('https://api.gdax.com/products/LTC-USD/candles?granularity=86400')
-      .then((response) => {
+        var start= new Date();
+        start.setDate(start.getDate() -1);
+        start=start.toISOString()
+      this.callcoinbase(start, now, 300);
+  }
+   sevenDayGraph() {
+        var now = new Date();
 
+        now=now.toISOString()
+
+        var start= new Date();
+        start.setDate(start.getDate() -7);
+        start=start.toISOString()
+      this.callcoinbase(start, now, 3600);
+  }
+   onemonthsGraph() {
+        var now = new Date();
+
+        now=now.toISOString()
+
+        var start= new Date();
+        start.setDate(start.getDate() -30);
+        start=start.toISOString()
+      this.callcoinbase(start, now, 21600);
+  }
+   threemonthsGraph() {
+        var now = new Date();
+
+        now=now.toISOString()
+
+        var start= new Date();
+        start.setDate(start.getDate() -90);
+        start=start.toISOString()
+      this.callcoinbase(start, now, 86400);
+  }
+   oneYearGraph() {
+        var now = new Date();
+
+        now=now.toISOString()
+
+        var start= new Date();
+        start.setDate(start.getDate() -182);
+        start=start.toISOString()
+      this.callcoinbase(start, now, 86400);
+  }
+
+    callcoinbase(startDate, endDate, period) {
+axios.get(`https://api.gdax.com/products/LTC-USD/candles?start=${startDate}&end=${endDate}&granularity=${period}`).then((response) => {
         const Data = response.data.reverse();
         const chartData = {
           labels: Data.map(transac => timeConverter(transac[0])),
           datasets: [
             {
-              label: 'Price XRP/USD',
-              fill: false,
-              lineTension: 0.1,
-              backgroundColor: 'rgb(255,255,224)',
-              borderColor: 'rgb(255,255,224)',
-              borderCapStyle: 'butt',
-              borderDash: [],
-              borderDashOffset: 0.0,
-              borderJoinStyle: 'miter',
-              pointBorderColor: 'rgb(255,255,224)',
-              pointBackgroundColor: '#fff',
-              pointBorderWidth: 1,
-              pointHoverRadius: 5,
-              pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-              pointHoverBorderColor: 'rgba(220,220,220,1)',
-              pointHoverBorderWidth: 2,
-              pointRadius: 1,
-              pointHitRadius: 10,
+              label: 'Price LTC/USD',
+                  fill: false,
+                  lineTension: 0.1,
+                  backgroundColor: 'rgba(75,192,192,1)',
+                  borderColor: 'rgba(75,192,192,1)',
+                  borderCapStyle: 'butt',
+                  borderDash: [],
+                  borderDashOffset: 0.0,
+                  borderJoinStyle: 'miter',
+                  pointBorderColor: 'rgba(75,192,192,1)',
+                  pointBackgroundColor: '#fff',
+                  pointBorderWidth: 1,
+                  pointHoverRadius: 5,
+                  pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+                  pointHoverBorderColor: 'rgba(220,220,220,1)',
+                  pointHoverBorderWidth: 2,
+                  pointRadius: 1,
+                  pointHitRadius: 10,
               data: Data.map(transac => transac[3]),
             }
           ]
@@ -65,10 +112,26 @@ class CoinbaseChartLTC extends Component {
         this.setState({ chartData });
       });
   }
+ componentDidMount(){
+      var now = new Date();
+
+        now=now.toISOString()
+
+        var start= new Date();
+        start.setDate(start.getDate() -182);
+        start=start.toISOString()
+      this.callcoinbase(start, now, 86400);
+}
 
   render() {
     return (
       <div className="chart">
+          <button onClick={() => this.oneDayGraph()}>1D</button>
+          <button onClick={() => this.sevenDayGraph()}>7D</button>
+
+          <button onClick={() => this.onemonthsGraph()}>1M</button>
+          <button onClick={() => this.threemonthsGraph()}>3M</button>
+          <button onClick={() => this.oneYearGraph()}>6M</button>
         <Line
           data={this.state.chartData}
           width={80}
@@ -83,4 +146,4 @@ class CoinbaseChartLTC extends Component {
   }
 }
 
-export default CoinbaseChartLTC ;
+export default CoinbaseChartLTC;

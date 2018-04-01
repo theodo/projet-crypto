@@ -4,21 +4,25 @@ import './Exchange.css'
 
 //const API_URL = 'https://api.coinmarketcap.com/v1/ticker/'
 
-class PoloniexETH extends Component {
+class Kraken extends Component {
     constructor(props){
         super(props)
         this.state = {
             requestFailed: true,
-            data: {}
+            data: {},
+            tampon: {}
+
         }
+
+
     }
 
-
-
     componentDidMount() {
-        axios.get('https://poloniex.com/public?command=returnTicker').then((response) => {
+        axios.get('https://api.kraken.com/0/public/OHLC?pair=ETHUSD').then((response) => {
 
-            this.setState({ data: response.data, requestFailed: false });
+            this.setState({ data: response.data.result.XETHZUSD, requestFailed: false, tampon: response.data.result.XETHZUSD });
+
+
         }).catch((err) => {
             alert("Error with the API");
             console.log(err)
@@ -27,18 +31,19 @@ class PoloniexETH extends Component {
 
     render() {
 
-        if(this.state.requestFailed){
+        if (this.state.requestFailed) {
             return  <p>Failure, abort mission...</p>
         } else {
             return(
                 <div id="data-container">
-                    <div id="left" className='box'>
-                      <div className="heading">${Math.trunc(this.state.data["USDT_ETH"]["last"])}</div>
-                    </div>
+                                <div id="left" className='box'>
+                                    <div className="heading">${Math.trunc(this.state.data[719][1])}</div>
+                                </div>
+
                 </div>
             );
         }
     }
-
 }
-export default PoloniexETH
+
+export default Kraken;

@@ -14,8 +14,7 @@ function timeConverter(UNIX_timestamp){
     var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
     return time;
 }
-
-class PoloniexChartETH extends Component {
+class KrakenChartETH extends Component {
 
   constructor(props){
     super(props);
@@ -30,7 +29,7 @@ class PoloniexChartETH extends Component {
 
         startDate=startDate.toString();
         endDate=endDate.toString();
-      this.callPoloniex(startDate, endDate, 300);
+      this.CallKraken(startDate,5);
   }
 
    oneYearGraph() {
@@ -39,7 +38,7 @@ class PoloniexChartETH extends Component {
 
         startDate=startDate.toString();
         endDate=endDate.toString();
-      this.callPoloniex(startDate, endDate, 86400);
+      this.CallKraken(startDate,1440);
   }
    onemonthsGraph() {
         var endDate=Math.trunc(Date.now()/1000)
@@ -47,7 +46,7 @@ class PoloniexChartETH extends Component {
 
         startDate=startDate.toString();
         endDate=endDate.toString();
-      this.callPoloniex(startDate, endDate, 14400);
+      this.CallKraken(startDate,240);
   }
     threemonthsGraph() {
         var endDate=Math.trunc(Date.now()/1000)
@@ -55,7 +54,7 @@ class PoloniexChartETH extends Component {
 
         startDate=startDate.toString();
         endDate=endDate.toString();
-      this.callPoloniex(startDate, endDate, 14400);
+      this.CallKraken(startDate, 240);
   }
   sevenDayGraph() {
         var endDate=Math.trunc(Date.now()/1000)
@@ -63,16 +62,17 @@ class PoloniexChartETH extends Component {
 
         startDate=startDate.toString();
         endDate=endDate.toString();
-      this.callPoloniex(startDate, endDate, 900);
+      this.CallKraken(startDate,15);
   }
 
-  callPoloniex(startDate, endDate, period) {
-      axios(`https://poloniex.com/public?command=returnChartData&currencyPair=USDT_ETH&start=${startDate}&end=${endDate}&period=${period}`)
+  CallKraken(startDate,period) {
+      axios(`https://api.kraken.com/0/public/OHLC?pair=ETHUSD&interval=${period}&since=${startDate}`)
       .then((response) => {
 
-        const Data = response.data;
+        const Data = response.data.result;
+
         const chartData = {
-          labels: Data.map(k => timeConverter(k.date)),
+          labels: Data.XETHZUSD.map(k => timeConverter(k[0])),
           datasets: [
             {
               label: 'Price ETH/USD',
@@ -93,7 +93,7 @@ class PoloniexChartETH extends Component {
                   pointHoverBorderWidth: 2,
                   pointRadius: 1,
                   pointHitRadius: 10,
-                  data: Data.map(d => d.open),
+                  data: Data.XETHZUSD.map(d => d[1]),
             }
           ]
         }
@@ -108,7 +108,7 @@ class PoloniexChartETH extends Component {
 
       startDate=startDate.toString();
       endDate=endDate.toString();
-      this.callPoloniex(startDate, endDate, 86400);
+      this.CallKraken(startDate,1440);
   }
 
   render() {
@@ -134,4 +134,4 @@ class PoloniexChartETH extends Component {
   }
 }
 
-export default PoloniexChartETH;
+export default KrakenChartETH;

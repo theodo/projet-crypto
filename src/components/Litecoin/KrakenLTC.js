@@ -4,7 +4,7 @@ import './Exchange.css'
 
 //const API_URL = 'https://api.coinmarketcap.com/v1/ticker/'
 
-class CoinMarketPlaceLTC extends Component {
+class KrakenLTC extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -35,7 +35,7 @@ class CoinMarketPlaceLTC extends Component {
                         if(dynamicData.name === "Litecoin"){
                             return (
                                 <div id="left" className='box' key={key}>
-                                    <div className="heading">${dynamicData.price_usd}</div>
+                                    <div className="heading">${Math.trunc(dynamicData.price_usd)}</div>
                                 </div>
                             )
                         }})}
@@ -45,4 +45,4 @@ class CoinMarketPlaceLTC extends Component {
     }
 }
 
-export default CoinMarketPlaceLTC ;
+export default KrakenLTC ;

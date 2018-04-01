@@ -4,20 +4,25 @@ import './Exchange.css'
 
 //const API_URL = 'https://api.coinmarketcap.com/v1/ticker/'
 
-class CoinMarketPlaceETH extends Component {
+class Kraken extends Component {
     constructor(props){
         super(props)
         this.state = {
             requestFailed: true,
-            data: {}
+            data: {},
+            tampon: {}
+
         }
+
 
     }
 
     componentDidMount() {
-        axios.get('https://api.coinmarketcap.com/v1/ticker/').then((response) => {
-            console.log(response.data)
-            this.setState({ data: response.data, requestFailed: false });
+        axios.get('https://api.kraken.com/0/public/OHLC?pair=XBTUSD').then((response) => {
+
+            this.setState({ data: response.data.result.XXBTZUSD, requestFailed: false, tampon: response.data.result.XXBTZUSD });
+
+
         }).catch((err) => {
             alert("Error with the API");
             console.log(err)
@@ -31,18 +36,14 @@ class CoinMarketPlaceETH extends Component {
         } else {
             return(
                 <div id="data-container">
-                    {this.state.data.map(function(dynamicData, key){
-                        if(dynamicData.name === "Ethereum"){
-                            return (
-                                <div id="left" className='box' key={key}>
-                                    <div className="heading">${dynamicData.price_usd}</div>
+                                <div id="left" className='box'>
+                                    <div className="heading">${Math.trunc(this.state.data[719][1])}</div>
                                 </div>
-                            )
-                        }})}
+
                 </div>
             );
         }
     }
 }
 
-export default CoinMarketPlaceETH;
+export default Kraken;

@@ -17,7 +17,7 @@ class Poloniex extends Component {
 
     componentDidMount() {
         axios.get('https://poloniex.com/public?command=returnTicker').then((response) => {
-            console.log(response.data)
+
             this.setState({ data: response.data, requestFailed: false });
         }).catch((err) => {
             alert("Error with the API");
@@ -33,8 +33,8 @@ class Poloniex extends Component {
             return(
                 <div id="data-container">
                     <div id="left" className='box'>
-                      <div className="heading">${this.state.data["USDT_BTC"]["last"]}</div>
-                      <div className="subtext">Updated every 10 seconds</div>
+                      <div className="heading">${Math.trunc(this.state.data["USDT_BTC"]["last"])}</div>
+                     <div className="subtext"></div>
                     </div>
                 </div>
             );
