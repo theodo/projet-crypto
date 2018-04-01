@@ -50,6 +50,7 @@ class Content_Example extends Component {
               <Tab label="Bitcoin" >
                 <div>
                   <p>
+
                     <Spread />
                   </p>
                 </div>

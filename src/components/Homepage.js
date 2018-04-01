@@ -19,6 +19,8 @@ import {
   Visibility,
 } from 'semantic-ui-react'
 
+import ChatbotTest from "./ChatBot";
+
 /* eslint-disable react/no-multi-comp */
 /* Heads up! HomepageHeading uses inline styling, however it's not the best practice. Use CSS or styled components for
  * such things.
@@ -87,6 +89,7 @@ class DesktopContainer extends Component {
                         <Menu.Item as='a'>Home{' '}</Menu.Item>
                         <Menu.Item as='a'> Data Visualisation{' '}</Menu.Item>
                         <Menu.Item as='a'> Example Result </Menu.Item>
+                        <ChatbotTest/>
 //                      <Menu.Item as='a'>Careers</Menu.Item>
                     </div>
                         <Menu.Item position='right'>

@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 import './app.css'
 import axios from 'axios';
 import { Table, Menu, Icon, Label } from 'semantic-ui-react';
+import ExampleBTC from './Loading';
+import bitcoinImg from './assets/bitcoin.png';
+
 
 const MAX_SPREAD = 1;
+const DATE_CONST = 1521827808.875168 ;
 
 
 // let DATA_STATIC = JSON.parse('[{"rates_date": 1522161465.8813398, "rates": [{"market": "BitFinex", "price": "458.75000000", "volume": 329731.81901234}, {"market": "Bittrex", "price": "461.04375000", "volume": 11941.87853938}, {"market": "C-Cex", "price": "525.96006998", "volume": 0.15339141}, {"market": "Cex.io", "price": "468.76000000", "volume": 4540.501489}, {"market": "Exmo", "price": "486.99000000", "volume": 6475.8980916}, {"market": "Hitbtc", "price": "469.96000000", "volume": 10359.802}, {"market": "Kraken", "price": "460.41000000", "volume": 112877.3774565}, {"market": "Livecoin", "price": "476.00000000", "volume": 397.44638944}, {"market": "Poloniex", "price": "460.00395234", "volume": 13601.77469888}, {"market": "wexnz", "price": "468.87202000", "volume": 6767.38219}]}, {"rates_date": 1522161469.49707, "rates": [{"market": "BitFinex", "price": "458.75000000", "volume": 329731.81901234}, {"market": "Bittrex", "price": "461.04375000", "volume": 11941.87853938}, {"market": "C-Cex", "price": "525.96006998", "volume": 0.15339141}, {"market": "Cex.io", "price": "468.76000000", "volume": 4540.501489}, {"market": "Exmo", "price": "486.99000000", "volume": 6475.8980916}, {"market": "Hitbtc", "price": "469.96000000", "volume": 10359.802}, {"market": "Kraken", "price": "460.41000000", "volume": 112877.3774565}, {"market": "Livecoin", "price": "476.00000000", "volume": 397.44638944}, {"market": "Poloniex", "price": "460.00395234", "volume": 13601.77469888}, {"market": "wexnz", "price": "468.87202000", "volume": 6767.38219}]}, {"rates_date": 1522161491.740586, "rates": [{"market": "BitFinex", "price": "458.75000000", "volume": 329731.81901234}, {"market": "Bittrex", "price": "461.04375000", "volume": 11941.87853938}, {"market": "C-Cex", "price": "525.96006998", "volume": 0.15339141}, {"market": "Cex.io", "price": "468.04000000", "volume": 4543.93318}, {"market": "Exmo", "price": "486.99000000", "volume": 6474.08311914}, {"market": "Hitbtc", "price": "469.40000000", "volume": 10363.847}, {"market": "Kraken", "price": "460.29000000", "volume": 112913.4977093}, {"market": "Livecoin", "price": "476.00000000", "volume": 397.44638944}, {"market": "Poloniex", "price": "460.00533866", "volume": 13602.68805295}, {"market": "wexnz", "price": "468.43000000", "volume": 6762.49462}]}, {"rates_date": 1522161783.9715517, "rates": [{"market": "BitFinex", "price": "459.67000000", "volume": 329439.80332733}, {"market": "Bittrex", "price": "461.04375000", "volume": 11939.9333004}, {"market": "C-Cex", "price": "525.96006998", "volume": 0.15339141}, {"market": "Cex.io", "price": "468.76000000", "volume": 4501.72753}, {"market": "Exmo", "price": "486.62400000", "volume": 6479.10696285}, {"market": "Hitbtc", "price": "469.67000000", "volume": 10379.958}, {"market": "Kraken", "price": "461.29000000", "volume": 112425.22410582}, {"market": "Livecoin", "price": "476.00000000", "volume": 396.5936912}, {"market": "Poloniex", "price": "462.86384145", "volume": 13582.36374577}, {"market": "wexnz", "price": "468.05435000", "volume": 6752.08562}]}]')
@@ -92,49 +96,110 @@ class Spread extends Component {
         {
 
             if (!this.state.isDataLoaded) {
-                return (<p>Fetching CRYTPO data...</p>);
+                return (<ExampleBTC/>)
             }
             if (this.state.requestFailed) {
                 return (<p>Failure, abort mission...</p>);
             } else {
                 const data = this.state.data;
                 return (
-                    <Table>
-                        <Table.Header>
-                            <Table.Row>
-                                <Table.HeaderCell negative>TimeStamp</Table.HeaderCell>
-                                <Table.HeaderCell negative>BitFinex Price</Table.HeaderCell>
-                                <Table.HeaderCell negative>Bitstamp Price</Table.HeaderCell>
-                                <Table.HeaderCell negative>Kraken Price</Table.HeaderCell>
-                                <Table.HeaderCell negative>Poloniex</Table.HeaderCell>
-                                <Table.HeaderCell class="positive">Max Spread</Table.HeaderCell>
+                    <div>
 
-                            </Table.Row>
-                        </Table.Header>
+                               <br></br>
+                            <div>
+                              <img className="logo" src={bitcoinImg} alt="ETH Logo" />
+                                <br></br>
+                                <center>
+                                <a className="title">Bitcoin Arbitrages from Today </a>
+                                    </center>
+                            </div>
 
-                        <Table.Body>
-                            {data.filter((elem) => {
-                                const spread = (Math.max(elem[Object.getOwnPropertyNames(elem)[1]][7].price, elem[Object.getOwnPropertyNames(elem)[1]][1].price, elem[Object.getOwnPropertyNames(elem)[1]][9].price, elem[Object.getOwnPropertyNames(elem)[1]][0].price) - Math.min(elem[Object.getOwnPropertyNames(elem)[1]][0].price, elem[Object.getOwnPropertyNames(elem)[1]][7].price, elem[Object.getOwnPropertyNames(elem)[1]][1].price, elem[Object.getOwnPropertyNames(elem)[1]][9].price))/Math.max(elem[Object.getOwnPropertyNames(elem)[1]][9].price, elem[Object.getOwnPropertyNames(elem)[1]][8].price, elem[Object.getOwnPropertyNames(elem)[1]][6].price, elem[Object.getOwnPropertyNames(elem)[1]][0].price)*100
-                                elem.spread = spread
-                                return spread > MAX_SPREAD
-                            }).map((elem) => {
-                                return (
-                                    <Table.Row>
-                                        <Table.Cell>{timeConverter(String(elem[Object.getOwnPropertyNames(elem)[0]]))}</Table.Cell>
-                                        <Table.Cell>{'$' + String(elem[Object.getOwnPropertyNames(elem)[1]][0].price).slice(0, 5)}</Table.Cell>
-                                        <Table.Cell>{'$' + String(elem[Object.getOwnPropertyNames(elem)[1]][1].price).slice(0, 5)}</Table.Cell>
-                                        <Table.Cell>{'$' + String(elem[Object.getOwnPropertyNames(elem)[1]][7].price).slice(0, 5)}</Table.Cell>
-                                        <Table.Cell>{'$' + String(elem[Object.getOwnPropertyNames(elem)[1]][9].price).slice(0, 5)}</Table.Cell>
-                                        <Table.Cell positive>{elem.spread+'%'}</Table.Cell>
-                                    </Table.Row>)
+                        <Table >
+                            <Table.Header>
+                                <Table.Row>
+                                    <Table.HeaderCell negative>TimeStamp</Table.HeaderCell>
+                                    <Table.HeaderCell negative>BitFinex Price</Table.HeaderCell>
+                                    <Table.HeaderCell negative>Bitstamp Price</Table.HeaderCell>
+                                    <Table.HeaderCell negative>Kraken Price</Table.HeaderCell>
+                                    <Table.HeaderCell negative>Poloniex</Table.HeaderCell>
+                                    <Table.HeaderCell class="positive">Max Spread</Table.HeaderCell>
 
-                            })
+                                </Table.Row>
+                            </Table.Header>
 
-                            }
+                            <Table.Body>
+                                {data.filter((elem) => {
+                                    const spread = (Math.max(elem[Object.getOwnPropertyNames(elem)[1]][7].price, elem[Object.getOwnPropertyNames(elem)[1]][1].price, elem[Object.getOwnPropertyNames(elem)[1]][9].price, elem[Object.getOwnPropertyNames(elem)[1]][0].price) - Math.min(elem[Object.getOwnPropertyNames(elem)[1]][0].price, elem[Object.getOwnPropertyNames(elem)[1]][7].price, elem[Object.getOwnPropertyNames(elem)[1]][1].price, elem[Object.getOwnPropertyNames(elem)[1]][9].price))/Math.max(elem[Object.getOwnPropertyNames(elem)[1]][9].price, elem[Object.getOwnPropertyNames(elem)[1]][8].price, elem[Object.getOwnPropertyNames(elem)[1]][6].price, elem[Object.getOwnPropertyNames(elem)[1]][0].price)*100
+                                    elem.spread = spread
+                                    return spread > MAX_SPREAD
+                                }).map((elem) => {  if (String(timeConverter(elem[Object.getOwnPropertyNames(elem)[0]])).slice(0,11) === '30 Mar 2018') {
+                                    return (
+                                        <Table.Row>
+                                            <Table.Cell>{timeConverter(String(elem[Object.getOwnPropertyNames(elem)[0]]))}</Table.Cell>
+                                            <Table.Cell>{'$' + String(elem[Object.getOwnPropertyNames(elem)[1]][0].price).slice(0, 5)}</Table.Cell>
+                                            <Table.Cell>{'$' + String(elem[Object.getOwnPropertyNames(elem)[1]][1].price).slice(0, 5)}</Table.Cell>
+                                            <Table.Cell>{'$' + String(elem[Object.getOwnPropertyNames(elem)[1]][7].price).slice(0, 5)}</Table.Cell>
+                                            <Table.Cell>{'$' + String(elem[Object.getOwnPropertyNames(elem)[1]][9].price).slice(0, 5)}</Table.Cell>
+                                            <Table.Cell positive>{String(elem.spread).slice(0, 5) + '%'}</Table.Cell>
+                                        </Table.Row>)
+                                }
+
+                                })
+
+                                }
 
 
-                        </Table.Body>
-                    </Table>);
+                            </Table.Body>
+                        </Table>
+                         <br></br>
+                            <div>
+                              <img className="logo" src={bitcoinImg} alt="ETH Logo" />
+                                <br></br>
+                                <center>
+                                <a className="title">Bitcoin Arbitrages from Past few days</a>
+                                    </center>
+                            </div>
+
+                        <Table >
+                            <Table.Header>
+                                <Table.Row>
+                                    <Table.HeaderCell negative>TimeStamp</Table.HeaderCell>
+                                    <Table.HeaderCell negative>BitFinex Price</Table.HeaderCell>
+                                    <Table.HeaderCell negative>Bitstamp Price</Table.HeaderCell>
+                                    <Table.HeaderCell negative>Kraken Price</Table.HeaderCell>
+                                    <Table.HeaderCell negative>Poloniex</Table.HeaderCell>
+                                    <Table.HeaderCell class="positive">Max Spread</Table.HeaderCell>
+
+                                </Table.Row>
+                            </Table.Header>
+
+                            <Table.Body>
+                                {data.filter((elem) => {
+                                    const spread = (Math.max(elem[Object.getOwnPropertyNames(elem)[1]][7].price, elem[Object.getOwnPropertyNames(elem)[1]][1].price, elem[Object.getOwnPropertyNames(elem)[1]][9].price, elem[Object.getOwnPropertyNames(elem)[1]][0].price) - Math.min(elem[Object.getOwnPropertyNames(elem)[1]][0].price, elem[Object.getOwnPropertyNames(elem)[1]][7].price, elem[Object.getOwnPropertyNames(elem)[1]][1].price, elem[Object.getOwnPropertyNames(elem)[1]][9].price))/Math.max(elem[Object.getOwnPropertyNames(elem)[1]][9].price, elem[Object.getOwnPropertyNames(elem)[1]][8].price, elem[Object.getOwnPropertyNames(elem)[1]][6].price, elem[Object.getOwnPropertyNames(elem)[1]][0].price)*100
+                                    elem.spread = spread
+                                    return spread > MAX_SPREAD
+                                }).map((elem) => {
+                                    return (
+                                        <Table.Row>
+                                            <Table.Cell>{timeConverter(String(elem[Object.getOwnPropertyNames(elem)[0]]))}</Table.Cell>
+                                            <Table.Cell>{'$' + String(elem[Object.getOwnPropertyNames(elem)[1]][0].price).slice(0, 5)}</Table.Cell>
+                                            <Table.Cell>{'$' + String(elem[Object.getOwnPropertyNames(elem)[1]][1].price).slice(0, 5)}</Table.Cell>
+                                            <Table.Cell>{'$' + String(elem[Object.getOwnPropertyNames(elem)[1]][7].price).slice(0, 5)}</Table.Cell>
+                                            <Table.Cell>{'$' + String(elem[Object.getOwnPropertyNames(elem)[1]][9].price).slice(0, 5)}</Table.Cell>
+                                            <Table.Cell positive>{String(elem.spread).slice(0,5)+'%'}</Table.Cell>
+                                        </Table.Row>)
+
+                                })
+
+                                }
+
+
+                            </Table.Body>
+                        </Table>
+
+
+
+                    </div>)
 
             }
 
