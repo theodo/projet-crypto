@@ -22,6 +22,7 @@ import {
 import courbe from './assets/courbe.png'
 
 
+
 /* eslint-disable react/no-multi-comp */
 /* Heads up! HomepageHeading uses inline styling, however it's not the best practice. Use CSS or styled components for
  * such things.
@@ -91,10 +92,14 @@ class DesktopContainer extends Component {
                         <Menu.Item as='a'> Data Visualisation</Menu.Item>
                         <Menu.Item as='a'> Example Result</Menu.Item>
                         <Menu.Item as='a'>Careers</Menu.Item>
+                        <Menu.Item as='a'>Home{' '}</Menu.Item>
+                        <Menu.Item as='a'> Data Visualisation{' '}</Menu.Item>
+                        <Menu.Item as='a'> Example Result </Menu.Item>
+                        <Menu.Item as='a'>Careers</Menu.Item>
                     </div>
                         <Menu.Item position='right'>
                             <Button as='a' inverted={!fixed}>Reach out!</Button>
-/                          <Button as='a' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>Sign Up</Button>
+                          <Button as='a' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>Sign Up</Button>
                         </Menu.Item>
                 </Container>     */}
             </Menu>
