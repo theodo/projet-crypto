@@ -11,7 +11,7 @@ import litecoinImg from './assets/litecoin.png'
 import PoloniexChart from './Bitcoin/PoloniexChart';
 import KrakenChart from './Bitcoin/KrakenChart';
 import CoinbaseChart from './Bitcoin/CoinbaseChart';
-import Joinedchart from './Bitcoin/JoinedChart';
+import Joinedchart from './Bitcoin/joinedChart';
 
 import Coinbase from './Bitcoin/Coinbase';
 import Kraken from './Bitcoin/Kraken';
