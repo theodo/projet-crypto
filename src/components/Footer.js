@@ -13,17 +13,17 @@ class Footer extends Component {
                         <List link inverted>
                             <List.Item as='p' style={{marginBottom: 0}}>Theodo x CS</List.Item>
                             <List.Item as='p' style={{marginBottom: 0}}>3 rue Joliot Cury</List.Item>
-                            <List.Item as='p'>75016 Paris</List.Item>
+                            <List.Item as='p'>Gif-sur-Yvette</List.Item>
                         </List>
                         </Grid.Column>
                         <Grid.Column width={3}>
                         <Header inverted as='h4' content='Contact' />
                         <List link inverted>
-                            <List.Item as='a' href="mailto:med.bellamine@student.ecp.fr">med.bellamine@student.ecp.fr</List.Item>
+                            <List.Item as='a' href="mailto:jessica.cohen@student.ecp.fr">contact@blackship.co</List.Item>
                         </List>
                         </Grid.Column>
                         <Grid.Column width={6}>
-                        <Header as='h4' inverted>Sign up for the Crypto Newsletter! </Header>
+                        <Header as='h4' inverted>Reach out to learn more!</Header>
                         <div id="mc_embed_signup">
                             <form action="" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" className="validate" target="_blank" noValidate>
                                 <div id="mc_embed_signup_scroll">

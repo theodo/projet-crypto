@@ -19,6 +19,9 @@ import {
   Visibility,
 } from 'semantic-ui-react'
 
+import courbe from './assets/courbe.png'
+
+
 /* eslint-disable react/no-multi-comp */
 /* Heads up! HomepageHeading uses inline styling, however it's not the best practice. Use CSS or styled components for
  * such things.
@@ -38,7 +41,7 @@ const HomepageHeading = ({ mobile }) => (
     />
     <Header
       as='h2'
-      content='Make arbitration great again.'
+      content='Arbitration opportunities.'
       inverted
       style={{
         fontSize: mobile ? '1.5em' : '1.7em',
@@ -82,18 +85,18 @@ class DesktopContainer extends Component {
               secondary={!fixed}
               size='large'
             >
-                <Container>
+             {/*   <Container>
                     <div>
-                        <Menu.Item as='a'>Home{' '}</Menu.Item>
-                        <Menu.Item as='a'> Data Visualisation{' '}</Menu.Item>
-                        <Menu.Item as='a'> Example Result </Menu.Item>
-//                      <Menu.Item as='a'>Careers</Menu.Item>
+                        <Menu.Item as='a'>Home</Menu.Item>
+                        <Menu.Item as='a'> Data Visualisation</Menu.Item>
+                        <Menu.Item as='a'> Example Result</Menu.Item>
+                        <Menu.Item as='a'>Careers</Menu.Item>
                     </div>
                         <Menu.Item position='right'>
                             <Button as='a' inverted={!fixed}>Reach out!</Button>
-//                          <Button as='a' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>Sign Up</Button>
+/                          <Button as='a' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>Sign Up</Button>
                         </Menu.Item>
-                </Container>
+                </Container>     */}
             </Menu>
             <HomepageHeading />
           </Segment>
@@ -182,12 +185,15 @@ const Homepage = () => (
           <Grid.Column width={8}>
             <Header as='h3' style={{ fontSize: '2em' }}>We Track Arbitration Opportunity</Header>
             <p style={{ fontSize: '1.33em' }}>
-              We can give your company superpowers to do things that they never thought possible. Let us delight
-              your customers and empower your needs... through pure data analytics.
+                    Several Bitcoin exchanges exist around the world and the bid/ask prices they propose can be briefly
+                    different from an exchange to another. The purpose of Blackship is to automatically profit from these
+                    temporary price differences while being market-neutral.
             </p>
-            <Header as='h3' style={{ fontSize: '2em' }}>We Make Bananas That Can Dance</Header>
+            <Header as='h3' style={{ fontSize: '2em' }}>Concrete Example</Header>
             <p style={{ fontSize: '1.33em' }}>
-              Yes that's right, you thought it was the stuff of dreams, but even bananas can be bioengineered.
+                    At the first vertical line, the spread between the exchanges is high so a bot could buy Bitstamp and
+                    short sells Bitfinex. Then, when the spread closes (second vertical line), the bot exits the market
+                    by selling Bitstamp and buying Bitfinex back.
             </p>
           </Grid.Column>
           <Grid.Column floated='right' width={6}>
@@ -195,39 +201,49 @@ const Homepage = () => (
               bordered
               rounded
               size='large'
-              src='/assets/images/wireframe/white-image.png'
+              src={courbe}
             />
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
           <Grid.Column textAlign='center'>
-            <Button size='huge'>Check Them Out</Button>
+            <Button size='huge'>More examples</Button>
           </Grid.Column>
         </Grid.Row>
       </Grid>
     </Segment>
     <Segment style={{ padding: '8em 0em' }} vertical>
       <Container text>
-        <Header as='h3' style={{ fontSize: '2em' }}>Breaking The Grid, Grabs Your Attention</Header>
+        <Header as='h3' style={{ fontSize: '2em' }}>Advantage: Sell VS Short Sell</Header>
         <p style={{ fontSize: '1.33em' }}>
-          Instead of focusing on content creation and hard work, we have learned how to master the art of doing
-          nothing by providing massive amounts of whitespace and generic content that can seem massive, monolithic
-          and worth your attention.
+          Unlike classic Bitcoin arbitrage systems, we don't recommend selling but actually short selling Bitcoin on the
+          short exchange. This feature offers two important advantages:
         </p>
-        <Button as='a' size='large'>Read More</Button>
+        <p style={{ fontSize: '1.33em' }}>
+          <List bulleted>
+            <List.Item>
+          The strategy is always market-neutral: the Bitcoin market's moves (up or down) don't impact the strategy returns.
+          This removes a huge risk from the strategy. The Bitcoin market could suddenly lose half its value that this won't
+          make any difference in the strategy returns.
+            </List.Item>
+            <List.Item>
+            The strategy doesn't need to transfer funds (USD or BTC) between Bitcoin exchanges. The buy/sell and sell/buy
+          trading activities are done in parallel on two different exchanges, independently. Advantage: no need to deal
+          with transfer latency issues.
+            </List.Item>
+          </List>
+        </p>
         <Divider
           as='h4'
           className='header'
           horizontal
           style={{ margin: '3em 0em', textTransform: 'uppercase' }}
         >
-          <a href='#'>Case Studies</a>
+          <a href='#'>Case Study</a>
         </Divider>
-        <Header as='h3' style={{ fontSize: '2em' }}>Did We Tell You About Our Bananas?</Header>
+        <Header as='h3' style={{ fontSize: '2em' }}>Our proof of concept</Header>
         <p style={{ fontSize: '1.33em' }}>
-          Yes I know you probably disregarded the earlier boasts as non-sequitur filler content, but it's really
-          true.
-          It took years of gene splicing and combinatory DNA research, but our bananas can really dance.
+          We tracked data from xxx, xxx, xxx for xxx days and reported the opportunities we found.
         </p>
         <Button as='a' size='large'>See Results</Button>
       </Container>

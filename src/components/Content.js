@@ -8,8 +8,6 @@ import bitcoinImg from './assets/bitcoin.png'
 import ethImg from './assets/eth.png'
 import litecoinImg from './assets/litecoin.png'
 
-import Footer from './Footer';
-
 import PoloniexChart from './Bitcoin/PoloniexChart';
 import KrakenChart from './Bitcoin/KrakenChart';
 import CoinbaseChart from './Bitcoin/CoinbaseChart';
@@ -123,9 +121,7 @@ class Content extends Component {
                 </div>
               </Tab>
             </Tabs>
-          );
         </MuiThemeProvider>
-        <Footer />
       </div>
     );
   }

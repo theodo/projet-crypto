@@ -8,8 +8,6 @@ import bitcoinImg from './assets/bitcoin.png'
 import ethImg from './assets/eth.png'
 import litecoinImg from './assets/litecoin.png'
 
-import Footer from './Footer';
-
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import Slider from 'material-ui/Slider';
@@ -62,9 +60,7 @@ class Content_Example extends Component {
                 </div>
               </Tab>
             </Tabs>
-          );
         </MuiThemeProvider>
-        <Footer />
       </div>
     );
   }
